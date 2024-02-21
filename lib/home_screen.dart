@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:default_project/utils/appcolors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'models/game_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -53,7 +54,21 @@ class _FetchDataCarModelsState extends State<FetchGameDataScreen> {
             return ListView(children: [
               ...List.generate(
                 gameModul.length,
-                (index) => InkWell(),
+                (index) => InkWell(
+                  onTap: (){},
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: AppColors.c_a3b18a,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: Column(
+                      children: [
+                        Image.network(gameModul[index].thumbnail),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ]);
           } else if (snapShot.hasError) {
