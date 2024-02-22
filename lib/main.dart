@@ -1,7 +1,9 @@
+import 'package:default_project/screens/category/category_screen.dart';
+import 'package:default_project/screens/homer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'home_screen.dart';
+import 'screens/categories.dart';
 void main(List<String> args) {
   runApp(MyApp());
 }
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: HomeScreen(),
+      child: HomerScreen(),
     );
   }
 }
