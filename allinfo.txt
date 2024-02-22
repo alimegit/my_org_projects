@@ -1,0 +1,3 @@
+api.provider.dartga  -  barcha future classlarni shu yerga yig'amiz
+categoryrepository categoryScreenni ichida ishlatiladigan repository
+ca1tegories.daretda kategoriya haqida ma'lumot berishi kerak
