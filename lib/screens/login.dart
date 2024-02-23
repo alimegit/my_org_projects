@@ -1,4 +1,5 @@
 import 'package:default_project/data/local/storage_repo.dart';
+import 'package:default_project/screens/homescreen.dart';
 import 'package:default_project/utils/app_colors.dart';
 import 'package:default_project/utils/app_images.dart';
 import 'package:default_project/widgets/buttons.dart';
@@ -22,7 +23,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController passwordcontroller = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -89,23 +90,34 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 15.h,
               ),
-              Buttons(onTap: () {
-                // if (formKey.currentState!.validate()) {
-                //   // If the form is valid, display a snackbar. In the real world,
-                //   // you'd often call a server or save the information in a database.
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text('Processing Data')),
-                //   );
-                // }
-                StorageRepository.setString(key:'name', value:emailController.text);
-                StorageRepository.setString(key:'name', value:passwordcontroller.text);
-                Navigator.push(context,MaterialPageRoute(builder: (context)=> LoginScreen()));
-              }, text: "Validate"),
+              Buttons(
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      if (emailController.text ==StorageRepository.getString(key: 'email') &&
+                          passwordcontroller.text.toString() ==
+                              StorageRepository.getString(key: 'code')) {
+                        Navigator.push(context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('incorrect password or email'),
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  text: "Validate"),
               SizedBox(
                 height: 5.h,
               ),
               NextString(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                  },
                   text: "Already have an account ? Login",
                   size: 14,
                   weight: FontWeight.w400,

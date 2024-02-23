@@ -54,7 +54,9 @@ class FiveScreen extends StatelessWidget {
               google: SvgPicture.asset(AppImages.facebook),
               color2: AppColors.white),
           SizedBox(height: 32.h,),
-          NextString(onTap: (){}, text: "Already have an account ? Login", size: 18, weight: FontWeight.w400, color: AppColors.c_FBDF00,),
+          NextString(onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+          }, text: "Already have an account ? Login", size: 18, weight: FontWeight.w400, color: AppColors.c_FBDF00,),
           SizedBox(height: 36.h,),
           SvgPicture.asset(AppImages.ellipse2),
           SizedBox(height: 30.h,),

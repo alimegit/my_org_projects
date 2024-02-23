@@ -33,7 +33,7 @@ class EmailTextFormField extends StatelessWidget {
           TextFormField(
             controller: controller,
             validator: (String? value) {
-              if (value == null || value.isNotEmpty) {
+              if (value == null || value.isEmpty) {
                 return "Enter true text";
               } else {
                 return null;

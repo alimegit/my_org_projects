@@ -23,7 +23,7 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-  final GlobalKey formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController passwordcontroller = TextEditingController();
 
   final TextEditingController nameController = TextEditingController();
@@ -97,20 +97,24 @@ class _CreateScreenState extends State<CreateScreen> {
               SizedBox(
                 height: 15.h,
               ),
-              Buttons(onTap: () {
-                // if (formKey.currentState!.validate()) {
-                //   // If the form is valid, display a snackbar. In the real world,
-                //   // you'd often call a server or save the information in a database.
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text('Processing Data')),
-                //   );
-                // }
-                StorageRepository.setString(key:'name', value:nameController.text);
-                StorageRepository.setString(key:'name', value:emailController.text);
-                StorageRepository.setString(key:'name', value:passwordcontroller.text);
-                Navigator.push(context,MaterialPageRoute(builder: (context)=> LoginScreen()));
-              }, text: "Validate"),
+              Buttons(
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginScreen()));
+                      StorageRepository.setString(
+                          key: 'name', value: nameController.text);
+                      StorageRepository.setString(
+                          key: 'email', value: emailController.text);
+                      StorageRepository.setString(
+                          key: 'code', value: passwordcontroller.text);
+                    }
 
+                  },
+                  text: "Validate"),
               SizedBox(
                 height: 5.h,
               ),
@@ -129,7 +133,8 @@ class _CreateScreenState extends State<CreateScreen> {
               ),
               NextString(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   },
                   text: "Skip for now",
                   size: 12,
