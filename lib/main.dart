@@ -1,11 +1,11 @@
+import 'package:default_project/data/local/storage_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'screens/first_screen.dart';
-import 'screens/login_screen.dart';
 void main(List<String> args) {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
+  StorageRepository();
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

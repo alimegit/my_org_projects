@@ -12,22 +12,19 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/password.dart';
-import 'homescreen.dart';
 import 'login.dart';
 
-class CreateScreen extends StatefulWidget {
-  const CreateScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<CreateScreen> createState() => _CreateScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _CreateScreenState extends State<CreateScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey formKey = GlobalKey<FormState>();
   final TextEditingController passwordcontroller = TextEditingController();
-
   final TextEditingController nameController = TextEditingController();
-
   final TextEditingController emailController = TextEditingController();
   late SharedPreferences _pref;
 
@@ -65,19 +62,14 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Center(
                   child: NextString(
                       onTap: () {},
-                      text: "Create an account",
+                      text: "Login",
                       size: 24,
                       weight: FontWeight.w700,
                       color: AppColors.white),
                 ),
               ),
               SizedBox(
-                height: 20.h,
-              ),
-              UniversalTextFormField(
-                controller: nameController,
-                text: 'Full Name',
-                fulltext: 'Full Name',
+                height: 109.h,
               ),
               SizedBox(
                 height: 1.h,
@@ -105,12 +97,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 //     const SnackBar(content: Text('Processing Data')),
                 //   );
                 // }
-                StorageRepository.setString(key:'name', value:nameController.text);
                 StorageRepository.setString(key:'name', value:emailController.text);
                 StorageRepository.setString(key:'name', value:passwordcontroller.text);
                 Navigator.push(context,MaterialPageRoute(builder: (context)=> LoginScreen()));
               }, text: "Validate"),
-
               SizedBox(
                 height: 5.h,
               ),
@@ -128,9 +118,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 height: 15.h,
               ),
               NextString(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
-                  },
+                  onTap: () {},
                   text: "Skip for now",
                   size: 12,
                   weight: FontWeight.w400,

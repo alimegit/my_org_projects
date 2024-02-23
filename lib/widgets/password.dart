@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/app_colors.dart';
 
-class UniversalTextFormField extends StatelessWidget {
-  const UniversalTextFormField(
+class PasswordTextFormField extends StatelessWidget {
+  const PasswordTextFormField(
       {super.key,
-      required this.controller,
-      required this.text,
-      required this.fulltext});
+        required this.controller,
+        required this.text,
+        required this.fulltext});
 
   final String text;
   final String fulltext;

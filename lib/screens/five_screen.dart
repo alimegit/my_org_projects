@@ -1,3 +1,4 @@
+import 'package:default_project/screens/login.dart';
 import 'package:default_project/widgets/buttons.dart';
 import 'package:default_project/widgets/next_string_widget.dart';
 import 'package:default_project/widgets/two_buttons.dart';
@@ -57,7 +58,9 @@ class FiveScreen extends StatelessWidget {
           SizedBox(height: 36.h,),
           SvgPicture.asset(AppImages.ellipse2),
           SizedBox(height: 30.h,),
-          NextString(onTap: (){}, text: "Skip for now", size: 18, weight: FontWeight.w600, color: AppColors.white)
+          NextString(onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+          }, text: "Skip for now", size: 18, weight: FontWeight.w600, color: AppColors.white)
 
 
         ],

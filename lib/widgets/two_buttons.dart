@@ -37,12 +37,16 @@ class TwoButtons extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 google,
-                SizedBox(width: 32.w,),
+                SizedBox(
+                  width: 32.w,
+                ),
                 Text(
                   text,
                   style: AppTextStyle.condensedLight.copyWith(
                     fontSize: 18.sp,
-                      color: color2, fontWeight: FontWeight.w700),
+                    color: color2,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ],
             ),

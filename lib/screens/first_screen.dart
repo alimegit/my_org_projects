@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/app_colors.dart';
+import 'homescreen.dart';
 
 class FirstScreen extends StatelessWidget {
   const FirstScreen({super.key});
@@ -49,7 +50,9 @@ class FirstScreen extends StatelessWidget {
             height: 48.h,
           ),
           NextString(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+            },
             text: "Skip for now",
             size: 14,
             weight: FontWeight.w700,
