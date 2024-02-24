@@ -11,8 +11,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/appcolors.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
-
+  const ProfileScreen({super.key, this.onTap});
+  final VoidCallback? onTap;
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 23.h, left: 33.w, right: 25.w),
+            padding: EdgeInsets.only(top: 27.h, left: 33.w, right: 25.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

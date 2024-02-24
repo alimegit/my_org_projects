@@ -2,19 +2,19 @@ import 'package:default_project/screens/profile_screen.dart';
 import 'package:default_project/screens/transactions_screen.dart';
 import 'package:default_project/screens/transfer_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import '../utils/app_images.dart';
 import '../utils/appcolors.dart';
 import 'mycards_screen.dart';
 
-class TabBox extends StatefulWidget {
-  const TabBox({super.key});
+class TabBox2 extends StatefulWidget {
+  const TabBox2({super.key});
 
   @override
-  State<TabBox> createState() => _TabBoxState();
+  State<TabBox2> createState() => _TabBox2State();
 }
 
-class _TabBoxState extends State<TabBox> {
+class _TabBox2State extends State<TabBox2> {
   List<Widget> _screens = [];
   int _activeIndex = 0;
 
@@ -32,7 +32,10 @@ class _TabBoxState extends State<TabBox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_activeIndex],
+      body: IndexedStack(
+        index: _activeIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (newActiveIndex) {
           _activeIndex = newActiveIndex;
@@ -40,11 +43,9 @@ class _TabBoxState extends State<TabBox> {
         },
         currentIndex: _activeIndex,
         type: BottomNavigationBarType.fixed,
-        selectedFontSize: 14,
-        selectedItemColor: AppColors.grey,
+        selectedFontSize: 16,
         unselectedFontSize: 14,
-        unselectedItemColor: AppColors.white,
-        backgroundColor: AppColors.black,
+        backgroundColor: Colors.white,
         items:  [
           BottomNavigationBarItem(
             activeIcon: SvgPicture.asset(AppImages.home,color: AppColors.white,),

@@ -7,7 +7,8 @@ import '../utils/app_images.dart';
 import '../utils/appcolors.dart';
 
 class TransactionsScreen extends StatefulWidget {
-  const TransactionsScreen({super.key});
+  const TransactionsScreen({super.key, this.onTap});
+  final VoidCallback? onTap;
 
   @override
   State<TransactionsScreen> createState() => _TransactionsScreenState();
@@ -256,28 +257,28 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                         SizedBox(
                           height: 8.h,
                         ),
-                        // Recents(
-                        //     grocery: SvgPicture.asset(AppImages.iesco),
-                        //     name: "Mobile Bill",
-                        //     price: "-\$120"),
-                        // SizedBox(
-                        //   height: 10.h,
-                        // ),
-                        // Padding(
-                        //   padding: EdgeInsets.symmetric(
-                        //       horizontal: 10.w, vertical: 0.w),
-                        //   child: Container(
-                        //     width: double.infinity,
-                        //     height: 2.h,
-                        //     decoration: BoxDecoration(
-                        //       color: AppColors.c_CECECE,
-                        //       borderRadius: BorderRadius.circular(8.r),
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 8.h,
-                        // ),
+                        Recents(
+                            grocery: SvgPicture.asset(AppImages.iesco),
+                            name: "Mobile Bill",
+                            price: "-\$120"),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.w, vertical: 0.w),
+                          child: Container(
+                            width: double.infinity,
+                            height: 2.h,
+                            decoration: BoxDecoration(
+                              color: AppColors.c_CECECE,
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8.h,
+                        ),
                         // Recents(
                         //     grocery: SvgPicture.asset(AppImages.iesco),
                         //     name: "Mobile Bill",

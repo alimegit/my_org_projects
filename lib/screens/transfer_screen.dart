@@ -6,7 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/app_images.dart';
 
 class TransfersScreen extends StatefulWidget {
-  const TransfersScreen({super.key});
+  const TransfersScreen({super.key,  this.onTap});
+  final VoidCallback? onTap;
 
   @override
   State<TransfersScreen> createState() => _TransfersScreenState();

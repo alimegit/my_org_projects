@@ -8,7 +8,8 @@ import '../utils/app_images.dart';
 import '../utils/appcolors.dart';
 
 class MyCardsScreen extends StatefulWidget {
-  const MyCardsScreen({super.key});
+  const MyCardsScreen({super.key,this.onTap});
+  final VoidCallback? onTap;
 
   @override
   State<MyCardsScreen> createState() => _MyCardsScreenState();
