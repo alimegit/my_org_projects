@@ -1,16 +1,12 @@
+import 'package:default_project/screens/by_location_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'home_screen.dart';
 void main(List<String> args) {
   runApp(MyApp());
 }
 
-
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -23,7 +19,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: HomeScreen(),
+      child: SimpleWeatherScreen(),
     );
   }
 }
