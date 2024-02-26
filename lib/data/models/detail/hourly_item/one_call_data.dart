@@ -3,15 +3,10 @@ import 'hourly_item.dart';
 
 class OneCallData {
   final double lat;
-
   final double lon;
-
   final String timezone;
-
   final int timezoneOffset;
-
   final  List<HourlyItem> hourly;
-
   final List<DailyItem> daily;
 
   OneCallData({

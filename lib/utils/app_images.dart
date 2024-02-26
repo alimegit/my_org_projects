@@ -4,6 +4,8 @@ class AppImages {
 
   //.svg
   static const String humadity = "assets/icons/humadity.svg";
+  static const String pressure = "assets/icons/pressure.svg";
+  static const String windy = "assets/icons/windy.svg";
 
 //.jpg
 

@@ -28,7 +28,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FutureBuilder<MyResponse>(
-                future: weatherRepository.getSimpleWeatherInfo("Beijing"),
+                future: weatherRepository.getSimpleWeatherInfo("Tashkent"),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
@@ -47,7 +47,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                             children: [
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.location_on_outlined)),
+                                  icon: const  Icon(Icons.location_on_outlined)),
                               Text(
                                 weatherMainModel.name,
                                 style: TextStyle(
@@ -60,7 +60,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                   .getParsedDate()
                                   .toString(),
                               style: TextStyle(
-                                  fontSize: 14, color: AppColors.white)),
+                                  fontSize: 14.sp, color: AppColors.white)),
                           Center(
                             child: Column(
                               children: [
@@ -70,13 +70,13 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                 ),
                                 Text(
                                   "${(weatherMainModel.mainInMain.temp - 273.15).toStringAsFixed(2)} C",
-                                  style: TextStyle(fontSize: 24),
+                                  style: TextStyle(fontSize: 24.sp),
                                 ),
                                 SizedBox(
                                   height: 13.h,
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(right: 30.h),
+                                  margin: EdgeInsets.only(right: 15.h),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(22.r),
@@ -85,7 +85,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.all(10.w.h),
+                                        padding: EdgeInsets.only(right:10.w,left:15.h,top: 15.h,bottom: 15.h),
                                         child: Row(
                                           children: [
                                             SvgPicture.asset(AppImages.humadity),
@@ -93,28 +93,45 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                               "${weatherMainModel.mainInMain.humidity}%",
                                               style: TextStyle(
                                                   color: AppColors.white,
+                                                  fontSize: 18.sp),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:  EdgeInsets.only(right: 10.w),
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(AppImages.pressure),
+                                            Text(
+                                              "${weatherMainModel.mainInMain.pressure} mbar",
+                                              style: TextStyle(
+                                                  color: AppColors.white,
                                                   fontSize: 15.sp),
                                             ),
                                           ],
                                         ),
                                       ),
-                                      Row(
-                                        children: [
-                                          SvgPicture.asset(AppImages.humadity),
-                                          Text(
-                                            "${weatherMainModel.mainInMain.humidity}%",
-                                            style: TextStyle(
-                                                color: AppColors.white,
-                                                fontSize: 15.sp),
-                                          ),
-                                        ],
+                                      Padding(
+                                        padding:  EdgeInsets.only(right: 15.w),
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(AppImages.windy),
+                                            Text(
+                                              "${weatherMainModel.windInMain.speed} km/h",
+                                              style: TextStyle(
+                                                  color: AppColors.white,
+                                                  fontSize: 15.sp),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     );
@@ -124,81 +141,28 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                   );
                 },
               ),
-              // FutureBuilder<MyResponse>(
-              //   future: weatherRepository.getComplexWeatherInfo(),
-              //   builder: (context, snapshot) {
-              //     if (snapshot.hasError) {
-              //       return Center(
-              //         child: Text(snapshot.error.toString()),
-              //       );
-              //     }
-              //     if (snapshot.hasData) {
-              //       OneCallData oneCallData =
-              //           (snapshot.data as MyResponse).data as OneCallData;
-              //       return Column(
-              //         children: [
-              //           const Row(
-              //             children: [
-              //               Text("Today"),
-              //               Text("Tomorrow"),
-              //             ],
-              //           ),
-              //           SingleChildScrollView(
-              //             scrollDirection: Axis.horizontal,
-              //             child: Row(
-              //               children: [
-              //                 ...List.generate(oneCallData.hourly.length,
-              //                     (index) {
-              //                   var hourData = oneCallData.hourly[index];
-              //                   return Column(
-              //                     children: [
-              //                       Text(hourData.dt.getParsedHour()),
-              //                       Image.network(
-              //                         hourData.weather[0].icon
-              //                             .getWeatherIconUrl(),
-              //                       ),
-              //                       Text(
-              //                         "${hourData.temp} C",
-              //                       ),
-              //                     ],
-              //                   );
-              //                 })
-              //               ],
-              //             ),
-              //           ),
-              //           SingleChildScrollView(
-              //             scrollDirection: Axis.horizontal,
-              //             child: Row(
-              //               children: [
-              //                 ...List.generate(oneCallData.daily.length, (index) {
-              //                   var daily = oneCallData.daily[index];
-              //                   return Row(
-              //                     children: [
-              //                       Text(daily.dt.getParsedDateDay()),
-              //                       Image.network(
-              //                         daily.weather[0].icon.getWeatherIconUrl(),
-              //                       ),
-              //                       Text(
-              //                         "${daily.dailyTemp.day} C",
-              //                       ),
-              //                     ],
-              //                   );
-              //                 })
-              //               ],
-              //             ),
-              //           ),
-              //           Text(
-              //             oneCallData.timezone,
-              //             style: TextStyle(fontSize: 24),
-              //           ),
-              //         ],
-              //       );
-              //     }
-              //     return const Center(
-              //       child: CircularProgressIndicator(),
-              //     );
-              //   },
-              // ),
+              FutureBuilder<MyResponse>(
+                future: weatherRepository.getComplexWeatherInfo(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(snapshot.error.toString()),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    OneCallData oneCallData =
+                    (snapshot.data as MyResponse).data as OneCallData;
+                    return Column(
+                      children: [
+                        Text(oneCallData.timezone)
+                      ],
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             ],
           ),
         ));

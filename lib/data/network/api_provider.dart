@@ -34,22 +34,21 @@ class ApiProvider {
   }
 
   static Future<MyResponse> getComplexWeatherInfo() async {
-    // Map<String, String> queryParams = {
-    //   "lat": "41.2646",
-    //   "lon": "69.2163",
-    //   "units": "metric",
-    //   "exclude": "minutely,current",
-    //   "appid": AppConstants.complexApiKey1,
-    // };
-    //
-    // Uri uri = Uri.https(
-    //   AppConstants.baseUrl,
-    //   "/data/2.5/onecall",
-    //   queryParams,
-    // );
+    Map<String, String> queryParams = {
+      "lat": "41.2646",
+      "lon": "69.2163",
+      "units": "metric",
+      "exclude": "minutely,current",
+      "appid": AppConstants.complexApiKey2,
+    };
+    Uri uri = Uri.https(
+      AppConstants.baseUrl,
+      "/data/2.5/onecall",
+      queryParams,
+    );
 
     try {
-      http.Response response = await http.get(Uri.parse("https://weatherfakeapi.free.mockoapp.net/weather-api"));
+      http.Response response = await http.get(uri);
 
       if (response.statusCode == 200) {
         return MyResponse(
