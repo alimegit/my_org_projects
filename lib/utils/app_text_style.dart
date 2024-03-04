@@ -1,37 +1,52 @@
+import 'package:default_project/utils/appcolors.dart';
 import 'package:flutter/material.dart';
-import 'appcolors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class AppTextStyle {
   //Inter
-  static const TextStyle condensedBold = TextStyle(
-    fontFamily: "Condensed",
+  static  TextStyle robotoThin = TextStyle(
+    fontFamily: "Roboto",
     fontWeight: FontWeight.w200,
-    fontSize: 14,
+    fontSize: 14.w,
     color: AppColors.c_2A3256,
   );
-  static const TextStyle condensedLight = TextStyle(
-    fontFamily: "Condensed",
+  static  TextStyle robotoLight = TextStyle(
+    fontFamily: "Roboto",
     fontWeight: FontWeight.w300,
-    fontSize: 14,
+    fontSize: 14.w,
     color: AppColors.c_2A3256,
   );
-  static const TextStyle condensedRegular = TextStyle(
-    fontFamily: "Condensed",
+  static  TextStyle robotoRegular = TextStyle(
+    fontFamily: "Roboto",
     fontWeight: FontWeight.w400,
-    fontSize: 16,
+    fontSize: 16.w,
     color: AppColors.c_2A3256,
   );
-  static const TextStyle condensedMedium = TextStyle(
-    fontFamily: "Condensed",
+  static  TextStyle robotoMedium = TextStyle(
+    fontFamily: "Roboto",
     fontWeight: FontWeight.w500,
-    fontSize: 16,
+    fontSize: 16.w,
+    color: AppColors.c_2A3256,
+  );
+  static  TextStyle robotoThinItalic = TextStyle(
+    fontFamily: "Roboto",
+    fontWeight: FontWeight.w600,
+    fontSize: 16.w,
     color: AppColors.c_2A3256,
   );
 
-  static const TextStyle interSemiBold = TextStyle(
-    fontFamily: "Condensed",
-    fontWeight: FontWeight.w600,
-    fontSize: 16,
+  static  TextStyle robotoBold = TextStyle(
+    fontFamily: "Roboto",
+    fontWeight: FontWeight.w700,
+    fontSize: 16.w,
+    color: AppColors.c_2A3256,
+  );
+
+  static  TextStyle robotoBlack = TextStyle(
+    fontFamily: "Roboto",
+    fontWeight: FontWeight.w800,
+    fontSize: 16.w,
     color: AppColors.c_2A3256,
   );
 }
