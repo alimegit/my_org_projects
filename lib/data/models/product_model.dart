@@ -2,32 +2,36 @@ import 'package:flutter/material.dart';
 
 class ProductModel {
   ProductModel({
-    required this.color,
     required this.description,
     required this.productName,
-    required this.imageUrl,
+    required this.image,
     required this.price,
-    required this.dateTime,
     required this.productId,
   });
 
   final String productName;
   final double price;
   final String description;
-  final Color color;
-  final String imageUrl;
+  final String image;
   final String productId;
-  final DateTime dateTime;
+  static ProductModel getDefaultProduct() {
+    return ProductModel(
+      description: "",
+      image: "",
+      price: 0,
+      productName: "",
+      productId: "",
+    );
+  }
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       productName: json["product_name"] as String? ?? "",
       description: json["description"] as String? ?? "",
-      imageUrl: json["image_url"] as String? ?? "",
+      image: json["image"] as String? ?? "",
       price: (json["price"] as num? ?? 0.0).toDouble(),
-      color: (json["color"] as String? ?? "FFFFFF").toColor(),
-      dateTime: DateTime.fromMillisecondsSinceEpoch(
-          (json["_created"] as num).toInt() * 1000),
+      // dateTime: DateTime.fromMillisecondsSinceEpoch(
+      //     (json["_created"] as num).toInt() * 1000),
       productId: json["_uuid"] as String? ?? "",
     );
   }
@@ -38,7 +42,7 @@ class ProductModel {
       "price": price,
       "description": description,
       "color": "FF0000",
-      "image_url": imageUrl,
+      "image": image,
     };
   }
 
@@ -48,7 +52,7 @@ class ProductModel {
       "price": price,
       "description": description,
       "color": "FF0000",
-      "image_url": imageUrl,
+      "image": image,
       "_uuid": productId,
     };
   }
@@ -63,4 +67,5 @@ extension ColorExtension on String {
     if (hexColor.length == 8) {
       return Color(int.parse("0x$hexColor"));
     }
-  }}
+  }
+}
