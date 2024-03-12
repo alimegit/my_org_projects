@@ -1,4 +1,4 @@
-import 'package:default_project/hello_screen.dart';
+import 'package:default_project/screens/hello_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

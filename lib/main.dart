@@ -2,7 +2,7 @@ import 'package:default_project/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'hello_screen.dart';
+import 'screens/hello_screen.dart';
 void main(List<String> args) {
   runApp(const MyApp());
 }
