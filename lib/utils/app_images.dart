@@ -4,6 +4,8 @@ class AppImages {
   static const String profile = "assets/images/profile.png";
   static const String logo = "assets/images/to_do_logo.jpg";
   static const String badbage = "assets/images/badbage.png";
+  static const String simple = "assets/images/simple.png";
+  static const String chick = "assets/images/chick.png";
 
   //.svg
   static const String delete = "assets/icons/delete.svg";
