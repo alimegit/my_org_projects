@@ -9,161 +9,122 @@ class Animation5 extends StatefulWidget {
 }
 
 class _Animation5State extends State<Animation5> with TickerProviderStateMixin {
-  late AnimationController animationController;
-  late Animation topPad;
-  late Animation leftPad;
-  late Animation bottomPad;
-  late Animation rightPad;
+  double right = 110;
+  double left = 110;
+  double bottom = 330;
+  double top = 330;
 
-  @override
-  void initState() {
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
 
-    topPad = Tween<double>(begin: 10.0, end: 100.0).animate(CurvedAnimation(
-      parent: animationController,
-      curve: Curves.bounceIn,
-      reverseCurve: Curves.bounceIn,
-    ));
-    bottomPad = Tween<double>(begin: 10.0, end: 100.0).animate(CurvedAnimation(
-      parent: animationController,
-      curve: Curves.bounceInOut,
-      reverseCurve: Curves.easeIn,
-    ));
-    leftPad = Tween<double>(begin: 10.0, end: 100.0).animate(CurvedAnimation(
-      parent: animationController,
-      curve: Curves.bounceInOut,
-      reverseCurve: Curves.easeIn,
-    ));
-    rightPad = Tween<double>(begin: 10.0, end: 100.0).animate(CurvedAnimation(
-      parent: animationController,
-      curve: Curves.bounceIn,
-      reverseCurve: Curves.easeIn,
-    ))
-
-    ..addListener(() { });
-    animationController.addListener(() { });
-    animationController.repeat();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding:  EdgeInsets.only(bottom: bottomPad.value,top: topPad.value,right: rightPad.value,left: leftPad.value),
-              child: Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(color: Colors.red),
-              ),
+      body:Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+          ),
+          AnimatedPositioned(
+            top: top,
+            left: left,
+            right: right,
+            bottom: bottom,
+            curve: Curves.linear,
+            duration: const Duration(milliseconds: 300),
+            child: Container(
+              color: Colors.red,
             ),
-            const SizedBox(
-              height: 100,
-            ),
-            InkWell(
-              onTap: (){
-                setState(() {
-                 topPad;
-                });
-              },
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(color: Colors.grey),
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("^", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          Positioned(
+            bottom: 50,
+            left: 50,
+            right: 50,
+            child: Column(
               children: [
-                InkWell(
-                  onTap: () {
-setState(() {
-  leftPad;
-});
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(color: Colors.grey),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("<",
-                              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.grey,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          top = top - 20;
+                          bottom = bottom + 20;
+                          setState(() {});
+                        },
+                        child: const Icon(
+                          Icons.arrow_upward_outlined,
+                          size: 40,
+                          color: Colors.black,
                         ),
                       ),
                     ),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      bottomPad;
-                    });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(color: Colors.grey),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("▽",
-                              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      rightPad;
-                    });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(color: Colors.grey),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            ">",
-                            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        color: Colors.grey,
+                        child: InkWell(
+                          onTap: () {
+                            left = left - 20;
+                            right = right + 20;
+                            setState(() {});
+                          },
+                          child: const Icon(
+                            Icons.arrow_back,
+                            size: 40,
                           ),
                         ),
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        color: Colors.grey,
+                        child: InkWell(
+                          onTap: () {
+                            right = right - 20;
+                            left = left + 20;
+                            setState(() {});
+                          },
+                          child: const Icon(
+                            Icons.arrow_forward,
+                            size: 40,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.grey,
+                    child: InkWell(
+                      onTap: () {
+                        bottom = bottom - 20;
+                        top = top + 20;
+                        setState(() {});
+                      },
+                      child: const Icon(
+                        Icons.arrow_downward,
+                        size: 40,
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

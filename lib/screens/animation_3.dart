@@ -26,43 +26,54 @@ class _Animation3State extends State<Animation3> with TickerProviderStateMixin {
         animationController.repeat(reverse: true);
       });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Row(
-          children: [
-            Column(
-              children: [
-                Container(
-                  height: animationController.value,
-                  width: 30,
-                  decoration: BoxDecoration(color: Colors.red),
+        child: InkWell(
+          onTap: (){
+            animationController.repeat(reverse: true);
+          },
+          child:   Center(
+            child: Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Container(
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(color: Colors.orange),
+                        ), Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(color: Colors.red),
+                        ),
+
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(color: Colors.blue),
+                        ),
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(color: Colors.green),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(color: Colors.orange),
-                ),
-              ],
+              ),
             ),
-            Column(
-              children: [
-                Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(color: Colors.blue),
-                ),
-                Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(color: Colors.green),
-                ),
-              ],
-            ),
-          ],
+          ),
         ),
       ),
     );

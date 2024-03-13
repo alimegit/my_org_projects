@@ -8,7 +8,7 @@ class Animation2 extends StatefulWidget {
 }
 
 class _Animation2State extends State<Animation2> {
-  bool isOpacity = false;
+  bool isOpacity = true;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _Animation2State extends State<Animation2> {
             duration: Duration(seconds: 3),
             decoration:
                 /// ekranni o'rtasiga bosing mo'jiza ro'y beradi☺
-                BoxDecoration(color: isOpacity ? Colors.green : Colors.green.withOpacity(0.01)),
+                BoxDecoration(color: isOpacity ? Colors.white : Colors.green.withOpacity(0.01)),
           ),
         ),
       ),

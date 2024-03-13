@@ -9,6 +9,9 @@ class Animation7 extends StatefulWidget {
 class _Animation7State extends State<Animation7> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.white,
+
+    );
   }
 }
