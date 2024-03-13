@@ -26,6 +26,7 @@ class _Animation2State extends State<Animation2> {
             width: 150,
             duration: Duration(seconds: 3),
             decoration:
+                /// ekranni o'rtasiga bosing mo'jiza ro'y beradi☺
                 BoxDecoration(color: isOpacity ? Colors.green : Colors.green.withOpacity(0.01)),
           ),
         ),
