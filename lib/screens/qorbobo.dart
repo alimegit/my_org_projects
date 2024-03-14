@@ -52,6 +52,19 @@ class SnowDadPainter extends CustomPainter{
     mouthPath.moveTo(center2.dx - radius / 2, center2.dy + radius / 2);
     mouthPath.quadraticBezierTo(center2.dx, center2.dy + radius, center2.dx + radius / 2, center2.dy + radius / 2);
     canvas.drawPath(mouthPath, paint);
+    final Paint fillPaint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill;
+    final Paint nosePaint = Paint()
+      ..color = Colors.orange
+      ..style = PaintingStyle.fill;
+    final Path nosePath = Path();
+    nosePath.moveTo(size.width / 2, size.height * 0.4);
+    nosePath.lineTo(size.width / 2 - 20, size.height * 0.4 - 5);
+    nosePath.lineTo(size.width / 2, size.height * 0.4 - 40);
+    nosePath.close();
+    canvas.drawPath(nosePath, fillPaint);
+    canvas.drawPath(nosePath, nosePaint);
 
     canvas..drawCircle(center, radius, paint);
     canvas.drawCircle(Offset(200, 240),100,paint2);
