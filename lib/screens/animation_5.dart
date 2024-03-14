@@ -20,6 +20,7 @@ class _Animation5State extends State<Animation5> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(),
       body:Stack(
         children: [
           SizedBox(

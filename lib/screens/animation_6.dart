@@ -33,6 +33,7 @@ class _Animation6State extends State<Animation6> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(),
         body: Padding(
           padding: EdgeInsets.only(top: 40),
           child: Column(

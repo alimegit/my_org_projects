@@ -30,6 +30,7 @@ class _Animation3State extends State<Animation3> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(),
       body: Center(
         child: InkWell(
           onTap: (){

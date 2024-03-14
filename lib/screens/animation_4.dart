@@ -14,6 +14,7 @@ class _Animation4State extends State<Animation4> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(),
       body: Center(
         child: InkWell(
           onTap: (){

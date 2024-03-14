@@ -14,6 +14,7 @@ class _Animation2State extends State<Animation2> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(),
       body: Center(
         child: InkWell(
           onTap: () {
@@ -26,8 +27,8 @@ class _Animation2State extends State<Animation2> {
             width: 150,
             duration: Duration(seconds: 3),
             decoration:
-                /// ekranni o'rtasiga bosing mo'jiza ro'y beradi☺
-                BoxDecoration(color: isOpacity ? Colors.white : Colors.green.withOpacity(0.01)),
+                /// ekranni o'rtasiga bosing mo'jiza ro'y beradi☺╨
+                BoxDecoration(color: isOpacity ? Colors.green : Colors.white.withOpacity(0.01)),
           ),
         ),
       ),

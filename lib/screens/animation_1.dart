@@ -13,6 +13,7 @@ class _Animation1State extends State<Animation1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: InkWell(
           onTap: () {
