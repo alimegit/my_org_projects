@@ -16,42 +16,44 @@ class CountryScreen extends StatelessWidget {
             context.watch<CountryViewModel>().countries.length,
                 (index) {
              CountryModel countryModel = context.watch<CountryViewModel>().countries[index];
-              return Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 1,
-                          offset: const  Offset(0, 1),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Image.network(
-                                  countryModel.flagsModel.png,width: 120,
-                                ),
-                              const SizedBox(width: 20,),
-                              Text(countryModel.region,style: AppTextStyle.robotoMedium.copyWith(color: Colors.black,fontWeight: FontWeight.w700),),
-                              const Spacer(),
-                              Image.network(
-                                countryModel.coatOfArmsModel.png,width: 120,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: const  Offset(0, 1),
+                      ),
+                    ],
                   ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(countryModel.countryNameModel.nameState,style: AppTextStyle.robotoMedium.copyWith(color: Colors.black,fontWeight: FontWeight.w700),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            Image.network(
+                                countryModel.flagsModel.png,width: 90,
+                              ),
+                            const SizedBox(width: 20,),
+                            Text(countryModel.region,style: AppTextStyle.robotoMedium.copyWith(color: Colors.black,fontWeight: FontWeight.w700),),
+                            const Spacer(),
+                            Image.network(
+                              countryModel.coatOfArmsModel.png,width:90 ,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
                 ),
               );
             },
