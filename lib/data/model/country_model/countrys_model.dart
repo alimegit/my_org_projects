@@ -1,4 +1,4 @@
-import 'coatOfArms_model.dart';
+import 'coatofarms_model.dart';
 import 'country_name_model.dart';
 import 'flag_model.dart';
 

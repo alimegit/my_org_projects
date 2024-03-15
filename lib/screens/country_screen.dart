@@ -1,9 +1,7 @@
 import 'package:default_project/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../data/model/country_model/countrys_model.dart';
-import '../data/model/country_model/flag_model.dart';
 import '../view_models/country_view_model.dart';
 class CountryScreen extends StatelessWidget {
   const CountryScreen({super.key});
@@ -28,7 +26,7 @@ class CountryScreen extends StatelessWidget {
                           color: Colors.black.withOpacity(0.2),
                           spreadRadius: 1,
                           blurRadius: 1,
-                          offset: Offset(0, 1),
+                          offset: const  Offset(0, 1),
                         ),
                       ],
                     ),
@@ -43,7 +41,7 @@ class CountryScreen extends StatelessWidget {
                                 ),
                               const SizedBox(width: 20,),
                               Text(countryModel.region,style: AppTextStyle.robotoMedium.copyWith(color: Colors.black,fontWeight: FontWeight.w700),),
-                              Spacer(),
+                              const Spacer(),
                               Image.network(
                                 countryModel.coatOfArmsModel.png,width: 120,
                               ),

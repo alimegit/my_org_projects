@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: HelloScreen(),
+      child: const HelloScreen(),
     );
   }
 }

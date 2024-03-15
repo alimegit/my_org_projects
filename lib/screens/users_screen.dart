@@ -1,8 +1,6 @@
 import 'package:default_project/view_models/users_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../data/model/users_model.dart';
 
 class UsersScreen extends StatelessWidget {
@@ -25,7 +23,7 @@ class UsersScreen extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(vertical: 20),
                       child: ListTile(
                         leading: Image.network(
-                          userModel.avatar_url,
+                          userModel.avatar_Url,
                         ),
                         title: Text(userModel.name),
                       ),
