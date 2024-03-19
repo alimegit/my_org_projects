@@ -55,7 +55,7 @@ class CalculatorViewModel extends ChangeNotifier {
       } else if ("1234567890.".contains(text[i])) {
         numbers2 = numbers2 + text[i];
       } else {
-        errorText = "Unaqa masde ;)";
+        errorText = "Infinity";
         notifyListeners();
         return;
       }
