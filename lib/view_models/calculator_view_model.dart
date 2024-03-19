@@ -69,7 +69,7 @@ class CalculatorViewModel extends ChangeNotifier {
         return double.parse(text1) + double.parse(text2);
       case "-":
         return double.parse(text1) - double.parse(text2);
-      case "*":
+      case "x":
         return double.parse(text1) * double.parse(text2);
       case "%":
         return double.parse(text1) - double.parse(text2);
