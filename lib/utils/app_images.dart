@@ -6,11 +6,8 @@ class AppImages {
 
   //.svg
   static const String delete = "assets/icons/delete.svg";
-  static const String menu = "assets/icons/menu.svg";
-  static const String tasks = "assets/icons/tasks.svg";
-  static const String calendar = "assets/icons/calendar.svg";
-  static const String profileIcon = "assets/icons/profile.svg";
-  static const String newTask = "assets/icons/new_task.svg";
+  static const String divider = "assets/icons/divider.svg";
+
 
 
 //.jpg
