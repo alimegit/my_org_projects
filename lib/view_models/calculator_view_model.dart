@@ -6,16 +6,27 @@ class CalculatorViewModel extends ChangeNotifier {
   String errorText = "";
 
   void addText(String tex) {
-      text = text +tex;
-      notifyListeners();
+    if("%*/+-".contains(tex)){
+      if(text.isNotEmpty&& !"%*/+-".contains(text[text.length - 1],)){
+        text = text +tex;
+      }
     }
 
-
+    else{
+      text = text +tex;
+    }
+      notifyListeners();
+    }
   void natija() {
-    result = result;
-    notifyListeners();
+    if (text.endsWith("%")) {
+      String numberString = text.substring(0, text.length - 1);
+      double number = double.parse(numberString);
+      double result1 = number / 100;
+    }
+    else {
+      result = result;
+    }
   }
-
   void clearText() {
     text = "";
     result = "";
@@ -30,15 +41,12 @@ class CalculatorViewModel extends ChangeNotifier {
     text = text.substring(0,text.length-1);
     notifyListeners();
   }
-
-
   void manualNatija() {
     bool isConfirmation = true;
     double son = 0.0;
     String amal = " ";
     String numbers1 = "";
     String numbers2 = "";
-
     for (int i = 0; i < text.length; i++) {
       if (i == text.length - 1) {
         numbers2 = numbers2 + text[i];
@@ -54,7 +62,11 @@ class CalculatorViewModel extends ChangeNotifier {
         isConfirmation = !isConfirmation;
       } else if ("1234567890.".contains(text[i])) {
         numbers2 = numbers2 + text[i];
-      } else {
+      }
+      else if(text.isEmpty){
+        result = "0";
+      }
+      else {
         errorText = "Infinity";
         notifyListeners();
         return;
@@ -69,10 +81,13 @@ class CalculatorViewModel extends ChangeNotifier {
         return double.parse(text1) + double.parse(text2);
       case "-":
         return double.parse(text1) - double.parse(text2);
-      case "x":
+      case "*":
         return double.parse(text1) * double.parse(text2);
       case "%":
-        return double.parse(text1) - double.parse(text2);
+        double number1 = double.parse(text1);
+        double number2 = double.parse(text2);
+        double result = (number1 * number2) / 100;
+        return result;
       case "/":
         return double.parse(text1) - double.parse(text2);
       default:

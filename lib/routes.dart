@@ -8,8 +8,7 @@ class AppRoute {
     switch (settings.name) {
       case "/":
         {
-          return navigate( CalculatorScreen());
-
+          return navigate( const CalculatorScreen());
         }
       default:
         {

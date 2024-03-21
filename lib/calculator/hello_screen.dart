@@ -64,6 +64,7 @@ class CalculatorScreen extends StatelessWidget {
                         ),
                       ),
                       InkWell(
+
                         onTap:(){
                           provider.addText("%");
                         },
@@ -131,7 +132,7 @@ class CalculatorScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap:(){
-                          provider.addText("x");
+                          provider.addText("*");
                         },
                         child: Text(
                           "x",
