@@ -45,7 +45,7 @@ class LocalNotificationService {
           if (notification.payload != null) {
             Navigator.push(navigatorKey.currentContext!,
                 MaterialPageRoute(builder: (context) {
-                  return const MapScreen();
+                  return  MapScreen();
                 }));
           }
           print(notification.payload);
