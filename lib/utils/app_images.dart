@@ -2,7 +2,9 @@ class AppImages {
   //.png
   static const String boy = "assets/images/boy.png";
   static const String profile = "assets/images/profile.png";
+  static const String userLocation = "assets/images/userLocation.png";
   static const String logo = "assets/images/to_do_logo.jpg";
+  static const String location = "assets/images/location.png";
 
   //.svg
   static const String delete = "assets/icons/delete.svg";

@@ -51,7 +51,7 @@ class MapsViewModel extends ChangeNotifier {
   addNewMarker() async {
     markers = {};
     Uint8List markerImage = await getBytesFromAsset(
-      AppImages.profile,
+      AppImages.location,
       150,
     );
     markers.add(
