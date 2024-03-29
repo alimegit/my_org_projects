@@ -1,33 +1,32 @@
-import 'package:default_project/routes.dart';
-
+import 'package:default_project/splash_screen.dart';
+import 'package:default_project/view_models/maps_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:default_project/view_models/location_view_model.dart';
 
-import 'hello_screen.dart';
-void main(List<String> args) {
-  runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LocationViewModel()),
+        ChangeNotifierProvider(create: (_) => MapsViewModel()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-
-
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(414, 896),
-      builder: (context, child) {
-        ScreenUtil.init(context);
-        return MaterialApp(
-          initialRoute: RouteNames.helloScreen,
-
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(useMaterial3: false),
-          home: child,
-        );
-      },
-      child:HelloScreen(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: false),
+      home: const SplashScreen(),
     );
   }
 }

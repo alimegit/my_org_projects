@@ -8,7 +8,7 @@ class AppRoute {
     switch (settings.name) {
       case "/":
         {
-          return navigate(const HelloScreen());
+          return navigate(const MapScreen());
 
         }
       default:
@@ -18,7 +18,7 @@ class AppRoute {
               body: Center(
                 child: Text(
                   "Mavjud Emas",
-                  style: TextStyle(fontSize: 30.sp),
+                 style: TextStyle(fontSize: 30.sp),
                 ),
               ),
             ),
