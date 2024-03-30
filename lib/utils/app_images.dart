@@ -5,6 +5,9 @@ class AppImages {
   static const String userLocation = "assets/images/userLocation.png";
   static const String logo = "assets/images/to_do_logo.jpg";
   static const String location = "assets/images/location.png";
+  static const String work = "assets/images/work.png";
+  static const String home = "assets/images/home.png";
+  static const String other = "assets/images/other.png";
 
   //.svg
   static const String delete = "assets/icons/delete.svg";

@@ -1,8 +1,9 @@
-import 'package:default_project/splash_screen.dart';
+import 'package:default_project/screens/splash_screen.dart';
 import 'package:default_project/view_models/location_view_model.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
 import 'package:default_project/view_models/notification_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -24,10 +25,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: false),
-      home: SplashScreen(),
+    return ScreenUtilInit(
+
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(useMaterial3: false),
+        home: SplashScreen(),
+      ),
     );
   }
 }

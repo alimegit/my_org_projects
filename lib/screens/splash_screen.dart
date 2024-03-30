@@ -1,4 +1,4 @@
-import 'package:default_project/map_screen.dart';
+import 'package:default_project/screens/map_screen.dart';
 import 'package:default_project/utils/appcolors.dart';
 import 'package:default_project/view_models/location_view_model.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
