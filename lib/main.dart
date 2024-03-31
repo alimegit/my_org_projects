@@ -1,4 +1,5 @@
 import 'package:default_project/screens/splash_screen.dart';
+import 'package:default_project/view_models/adress_view_model.dart';
 import 'package:default_project/view_models/location_view_model.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
 import 'package:default_project/view_models/notification_view_model.dart';
@@ -14,6 +15,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => LocationViewModel()),
       ChangeNotifierProvider(create: (_) => MapsViewModel()),
       ChangeNotifierProvider(create: (_) => NotificationViewModel()),
+      ChangeNotifierProvider(create: (_) => AddressesViewModel()),
 
     ],
     child: MyApp(),

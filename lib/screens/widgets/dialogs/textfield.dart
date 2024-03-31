@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 class NumberField extends StatelessWidget {
-  const NumberField({super.key, required this.controller, required this.text});
+  const NumberField({super.key, required this.controller, required this.text,});
   final TextEditingController controller;
   final String text;
-
   @override
   Widget build(BuildContext context) {
 
@@ -19,7 +18,6 @@ class NumberField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.yellow,width: 2),
           ),
         ),
-
       ),
     );
   }

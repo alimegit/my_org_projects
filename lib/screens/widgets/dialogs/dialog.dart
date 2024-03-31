@@ -1,9 +1,6 @@
+import 'package:default_project/screens/save_location_screen/location-screen.dart';
 import 'package:default_project/screens/widgets/dialogs/textfield.dart';
-import 'package:default_project/utils/app_text_style.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../data/model/place_category.dart';
@@ -86,9 +83,9 @@ addressDetailDialog({
                           stage: "",
                         ),
                       );
-                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const  SaveLocationScreen()));
                     },
-                    child: Text("SAVE PLACE"),),
+                    child: const  Text("SAVE"),),
               ),
 
             ],

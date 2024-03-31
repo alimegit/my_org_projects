@@ -37,7 +37,6 @@ class _MapScreenState extends State<MapScreen> {
                 onCameraIdle: () {
                   if (cameraPosition != null) {
                     context.read<MapsViewModel>().changeCurrentLocation(cameraPosition!);
-                    // context.read<MapsViewModel>().addNewMarker();
                   }
                 },
                 onCameraMove: (CameraPosition currentCameraPosition) {

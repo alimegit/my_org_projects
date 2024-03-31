@@ -149,4 +149,21 @@ class MapsViewModel extends ChangeNotifier {
 
     //location.enableBackgroundMode(enable: true);
   }
+  Future<Set<Marker>> getMarker({required PlaceModel placeModel}) async {
+    Uint8List markerImage = await getBytesFromAsset(
+      placeModel.imagePath,
+      100,
+    );
+    LatLng myLatLong = LatLng(placeModel.lat, placeModel.long);
+
+    return {
+      Marker(
+        position: myLatLong,
+        infoWindow:
+        InfoWindow(title: placeModel.title, snippet: placeModel.category),
+        icon: BitmapDescriptor.fromBytes(markerImage),
+        markerId: MarkerId(DateTime.now().toString()),
+      ),
+    };
+  }
 }
