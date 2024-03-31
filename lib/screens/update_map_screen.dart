@@ -7,24 +7,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-
 import '../data/model/place_category_enum.dart';
 import '../data/model/place_model.dart';
 import '../view_models/adress_view_model.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({
+class UpdateMapScreen extends StatefulWidget {
+  const UpdateMapScreen({
     super.key,
   });
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  State<UpdateMapScreen> createState() => _MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreenState extends State<UpdateMapScreen> {
   int activeIndex = 0;
   late String image;
- late String text;
+  late String text;
+
   @override
   Widget build(BuildContext context) {
     CameraPosition? cameraPosition;
@@ -71,10 +71,11 @@ class _MapScreenState extends State<MapScreen> {
                 ),
               ),
               categoryButton(
-                  callIndex: (int value) {  },
-                  imagePath: (String value) {
-                    image = value;
-                  })
+                callIndex: (int value) {},
+                imagePath: (String value) {
+                  image = value;
+                },
+              ),
             ],
           );
         },
@@ -97,7 +98,7 @@ class _MapScreenState extends State<MapScreen> {
             FloatingActionButton(
               onPressed: () {
                 addressDetailDialog(
-                  image:  image,
+                  image: image,
                   place: text,
                   context: context,
                   placeModel: (newAddressDetails) {

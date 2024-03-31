@@ -1,4 +1,4 @@
-import 'package:default_project/data/model/place_category.dart';
+import 'package:default_project/data/model/place_category_enum.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PlaceModel {
@@ -11,10 +11,12 @@ class PlaceModel {
     required this.orientAddress,
     required this.stage,
     this.id,
+    this.image = ''
   });
 
   final int? id;
   LatLng latLng;
+  final String image;
   final String placeName;
   PlaceCategory placeCategory;
   final String entrance;

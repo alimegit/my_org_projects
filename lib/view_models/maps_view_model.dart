@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-import '../data/model/place_category.dart';
+import '../data/model/place_category_enum.dart';
 import '../data/model/place_model.dart';
 import '../data/providers/api_provider.dart';
 import '../utils/app_images.dart';

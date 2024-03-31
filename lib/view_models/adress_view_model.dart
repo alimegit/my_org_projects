@@ -4,7 +4,7 @@ import '../data/model/place_model.dart';
 
 class AddressesViewModel extends ChangeNotifier {
   AddressesViewModel() {
-    myAddresses = []; //Read Addresses from Local Database or Firebase
+    myAddresses = [];
   }
 
   List<PlaceModel> myAddresses = [];
@@ -20,6 +20,6 @@ class AddressesViewModel extends ChangeNotifier {
   }
 
   deleteAddress(){
-
+    myAddresses =[];
   }}
 

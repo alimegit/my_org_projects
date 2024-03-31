@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<LocationViewModel>();
+    // context.read<LocationViewModel>();
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
