@@ -3,6 +3,7 @@ import 'package:default_project/screens/save_location_screen/save_location-scree
 import 'package:default_project/screens/widgets/dialogs/textfield.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
 import 'package:default_project/view_models/place_view_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -16,13 +17,21 @@ addressDetailDialog({
   required BuildContext context,
   required String place,
   required ValueChanged<PlaceModel> placeModel,
+  PlaceModel? placeModelUpdate,
+  required bool forUpdate,
 }) {
   final TextEditingController addressController =
       place.isEmpty ? TextEditingController() : TextEditingController(text: place);
-  final TextEditingController entranceController = TextEditingController();
-  final TextEditingController floorController = TextEditingController();
-  final TextEditingController homeController = TextEditingController();
-  final TextEditingController orientController = TextEditingController();
+  final TextEditingController entranceController =
+      forUpdate ? TextEditingController(text: placeModelUpdate!.entrance) : TextEditingController();
+  final TextEditingController floorController = forUpdate
+      ? TextEditingController(text: placeModelUpdate!.flatNumber)
+      : TextEditingController();
+  final TextEditingController homeController =
+      forUpdate ? TextEditingController(text: placeModelUpdate!.stage) : TextEditingController();
+  final TextEditingController orientController = forUpdate
+      ? TextEditingController(text: placeModelUpdate!.orientAddress)
+      : TextEditingController();
 
   showModalBottomSheet(
       context: context,
@@ -104,19 +113,33 @@ addressDetailDialog({
                             addressController.text.isEmpty) {
                           return;
                         } else {
-                          context.read<PlaceViewModel>().insertPlaces(
-                              PlaceModel(
-                                id: "",
-                                entrance: entranceController.text,
-                                flatNumber: floorController.text,
-                                orientAddress: orientController.text,
-                                placeCategory: PlaceCategory.work,
-                                latLng: const LatLng(0, 0),
-                                placeName: orientController.text,
-                                stage: "",
-                                image: image,
-                              ),
-                              context);
+                          forUpdate
+                              ? context.read<PlaceViewModel>().updatePlace(
+                                  PlaceModel(
+                                    id: placeModelUpdate!.id,
+                                    entrance: entranceController.text,
+                                    flatNumber: floorController.text,
+                                    orientAddress: orientController.text,
+                                    placeCategory: PlaceCategory.work,
+                                    latLng: const LatLng(0, 0),
+                                    placeName: orientController.text,
+                                    stage: "",
+                                    image: image,
+                                  ),
+                                  context)
+                              : context.read<PlaceViewModel>().insertPlaces(
+                                  PlaceModel(
+                                    id: "",
+                                    entrance: entranceController.text,
+                                    flatNumber: floorController.text,
+                                    orientAddress: orientController.text,
+                                    placeCategory: PlaceCategory.work,
+                                    latLng: const LatLng(0, 0),
+                                    placeName: orientController.text,
+                                    stage: "",
+                                    image: image,
+                                  ),
+                                  context);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

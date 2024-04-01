@@ -54,7 +54,7 @@ class _SaveLocationScreenState extends State<SaveLocationScreen> {
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const UpdateMapScreen()));
+                            MaterialPageRoute(builder: (context) =>  UpdateMapScreen(placeUpdateModel: places,)));
                       },
                       child: Container(
                         margin: const EdgeInsets.all(20),
@@ -93,7 +93,7 @@ class _SaveLocationScreenState extends State<SaveLocationScreen> {
                                           fontWeight: FontWeight.w500),
                                     ),
                                     Text(
-                                      places.orientAddress,
+                                      places.placeName,
                                       style: AppTextStyle.robotoRegular.copyWith(
                                           color: Colors.grey,
                                           fontSize: 20.sp,

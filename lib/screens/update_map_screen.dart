@@ -12,8 +12,9 @@ import '../data/model/place_model.dart';
 import '../view_models/adress_view_model.dart';
 
 class UpdateMapScreen extends StatefulWidget {
+  final PlaceModel placeUpdateModel;
   const UpdateMapScreen({
-    super.key,
+    super.key, required this.placeUpdateModel,
   });
 
   @override
@@ -98,6 +99,8 @@ class _MapScreenState extends State<UpdateMapScreen> {
             FloatingActionButton(
               onPressed: () {
                 addressDetailDialog(
+                  placeModelUpdate: widget.placeUpdateModel,
+                  forUpdate: true,
                   image: image,
                   place: text,
                   context: context,

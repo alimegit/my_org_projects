@@ -66,7 +66,8 @@ class _MapScreenState extends State<MapScreen> {
                   viewModel.currentPlaceName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 24.sp,
+                    fontSize: 18.sp,
+                    color: Colors.black
                   ),
                 ),
               ),
@@ -97,6 +98,7 @@ class _MapScreenState extends State<MapScreen> {
             FloatingActionButton(
               onPressed: () {
                 addressDetailDialog(
+                  forUpdate: false,
                   image:  image,
                   place: text,
                   context: context,
