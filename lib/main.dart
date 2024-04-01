@@ -4,6 +4,7 @@ import 'package:default_project/view_models/adress_view_model.dart';
 import 'package:default_project/view_models/location_view_model.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
 import 'package:default_project/view_models/notification_view_model.dart';
+import 'package:default_project/view_models/place_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +20,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => MapsViewModel()),
       ChangeNotifierProvider(create: (_) => NotificationViewModel()),
       ChangeNotifierProvider(create: (_) => AddressesViewModel()),
+      ChangeNotifierProvider(create: (_) => PlaceViewModel()),
 
     ],
     child: const MyApp(),

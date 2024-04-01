@@ -19,7 +19,5 @@ class AddressesViewModel extends ChangeNotifier {
     //Save some place
   }
 
-  deleteAddress(){
-    myAddresses =[];
-  }}
+  deleteAddress(){}}
 

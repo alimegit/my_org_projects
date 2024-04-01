@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:default_project/screens/save_location_screen/save_location-screen.dart';
 import 'package:default_project/screens/widgets/dialogs/textfield.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
+import 'package:default_project/view_models/place_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -102,18 +104,19 @@ addressDetailDialog({
                             addressController.text.isEmpty) {
                           return;
                         } else {
-                          placeModel.call(
-                            PlaceModel(
-                              entrance: entranceController.text,
-                              flatNumber: floorController.text,
-                              orientAddress: orientController.text,
-                              placeCategory: PlaceCategory.work,
-                              latLng: const LatLng(0, 0),
-                              placeName: orientController.text,
-                              stage: "",
-                              image: image,
-                            ),
-                          );
+                          context.read<PlaceViewModel>().insertPlaces(
+                              PlaceModel(
+                                id: "",
+                                entrance: entranceController.text,
+                                flatNumber: floorController.text,
+                                orientAddress: orientController.text,
+                                placeCategory: PlaceCategory.work,
+                                latLng: const LatLng(0, 0),
+                                placeName: orientController.text,
+                                stage: "",
+                                image: image,
+                              ),
+                              context);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -137,8 +140,8 @@ addressDetailDialog({
                             borderRadius: BorderRadius.circular(16.r),
                           ),
                           child: const Padding(
-                            padding:  EdgeInsets.all(8.0),
-                            child: Center(child:  Text("SAVE")),
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(child: Text("SAVE")),
                           ),
                         ),
                       ),
