@@ -13,15 +13,15 @@ class Auth extends StatelessWidget {
       borderRadius: BorderRadius.circular(50.r),
       onTap: onTap,
       child:Container(
-        width: 100.w,
-        height: 100.h,
+        width: 80.w,
+        height: 80.h,
         decoration: const  BoxDecoration(
           color: AppColors.black,
           shape: BoxShape.circle,
         ),
         child: Center(
           child: Text(
-            text,style: AppTextStyle.robotoMedium.copyWith(color: AppColors.white),
+            text,style: AppTextStyle.robotoMedium.copyWith(color: AppColors.white,fontWeight: FontWeight.w500,fontSize: 30.sp),
           ),
         ),
       ),

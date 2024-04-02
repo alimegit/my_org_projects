@@ -1,5 +1,5 @@
-import '../data/models/countries_model.dart';
-import '../data/models/form_status.dart';
+import '../../data/models/countries_model.dart';
+import '../../data/models/form_status.dart';
 
 class CountryState {
   List<CountryModel> countries;

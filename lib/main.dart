@@ -1,5 +1,7 @@
-import 'package:default_project/cubit/country_cubit.dart';
+import 'package:default_project/cubit/country/country_cubit.dart';
+import 'package:default_project/data/local/storage_repository.dart';
 import 'package:default_project/routes.dart';
+import 'package:default_project/screens/home_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +11,8 @@ import 'screens/countries_screen.dart';
 
 void main(List<String> args) {
   WidgetsFlutterBinding.ensureInitialized();
+
+  StorageRepository.instance;
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (_) => CountryCubit()..callCountry()),
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: CountriesScreen(),
+      child:const  PasswordScreen(),
     );
   }
 }

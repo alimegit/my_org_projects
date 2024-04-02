@@ -3,8 +3,8 @@ import 'package:default_project/utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../cubit/country_cubit.dart';
-import '../cubit/country_state.dart';
+import '../cubit/country/country_cubit.dart';
+import '../cubit/country/country_state.dart';
 import '../data/models/countries_model.dart';
 import '../data/models/form_status.dart';
 class CountriesScreen extends StatelessWidget {
