@@ -13,8 +13,7 @@ class SenderModel {
 
   factory SenderModel.fromJson(Map<String, dynamic> json) {
     return SenderModel(
-      brandImage: json['brand_image'] as String? ??
-          "https://api.logobank.uz/media/logos_png/Najot_Talim-01.png",
+      brandImage: json['brand_image'] as String? ?? "",
       name: json['name'] as String? ?? '',
       location: json['location'] as String? ?? "",
     );

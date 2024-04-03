@@ -1,6 +1,5 @@
 
 import '../../data/model/data_model.dart';
-
 abstract class BankState {}
 
 class ErrorBankState extends BankState {
@@ -8,7 +7,6 @@ class ErrorBankState extends BankState {
 
   ErrorBankState({required this.errorText});
 }
-
 class LoadingBankState extends BankState {}
 
 class SuccessBankState extends BankState {
