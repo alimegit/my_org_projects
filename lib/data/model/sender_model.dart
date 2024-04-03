@@ -20,3 +20,5 @@ class SenderModel {
     );
   }
 }
+//https://medium.com/@aliurinov472/dartda-konstruktorlar-haqida-f041af5f09e8
+//https://medium.com/@aliurinov472/constructors-in-dart-6d259ca64af4
