@@ -1,15 +1,11 @@
 import 'package:default_project/routes.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'hello_screen.dart';
 void main(List<String> args) {
+
   runApp(const MyApp());
 }
-
-
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -27,7 +23,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:HelloScreen(),
+      child: const BankScreen(),
     );
   }
 }
