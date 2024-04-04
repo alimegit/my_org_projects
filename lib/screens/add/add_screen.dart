@@ -1,11 +1,12 @@
-import 'package:default_project/screens/add/dialog.dart';
+import 'package:default_project/data/model/note_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/appcolors.dart';
+import 'dialog.dart'; // SaveDialog faylini import qilib oling
 
 class AddScreen extends StatefulWidget {
-  const AddScreen({super.key});
+  const AddScreen({Key? key}) : super(key: key);
 
   @override
   State<AddScreen> createState() => _AddScreenState();
@@ -14,7 +15,7 @@ class AddScreen extends StatefulWidget {
 class _AddScreenState extends State<AddScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController subTitleController = TextEditingController();
-
+   NoteModel noteModel = NoteModel.defaultModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +69,18 @@ class _AddScreenState extends State<AddScreen> {
                   ),
                   InkWell(
                     onTap: () {
-            SaveDialog();
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return  SaveDialog(onTap:(){
+                            if(titleController.text.isNotEmpty&& subTitleController.text.isNotEmpty ){
+
+                            }
+                          } , onBack:(){
+                            Navigator.pop(context);
+                          },);
+                        },
+                      );
                     },
                     borderRadius: BorderRadius.circular(15.r),
                     child: Container(

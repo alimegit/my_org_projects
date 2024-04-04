@@ -8,7 +8,6 @@ class StorageRepository {
   StorageRepository._() {
     _init();
   }
-
   factory StorageRepository() => instance;
 
   Future<void> _init() async {
