@@ -1,5 +1,5 @@
-import 'package:default_project/hello_screen.dart';
 
+import 'package:default_project/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,7 +8,7 @@ class AppRoute {
     switch (settings.name) {
       case "/":
         {
-          return navigate(const HelloScreen());
+          return navigate(const HomeScreen());
 
         }
       default:
