@@ -2,9 +2,8 @@ import 'dart:async';
 
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../data/local/local_database.dart';
-import '../data/model/note_model.dart';
+import '../../data/local/local_database.dart';
+import '../../data/model/note_model.dart';
 import 'notes_event.dart';
 import 'notes_state.dart';
 

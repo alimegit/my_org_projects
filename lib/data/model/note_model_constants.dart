@@ -1,3 +1,4 @@
+
 class NoteConstants{
   static const String tableName = "Notes";
   static const String text = "text";

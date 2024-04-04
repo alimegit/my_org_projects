@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 import 'dart:ui';
 
@@ -26,30 +27,30 @@ class NoteModel {
   });
 
   factory NoteModel.fromJson(Map<String, dynamic> json) => NoteModel(
-        id: json["id"] ?? "",
-        text: json["text"],
-        title: json["title"],
-        createDate: json["createDate"],
-        isRemove: json["isRemove"],
-        color: Color(json["color"]),
-      );
+    id: json["id"] ?? "",
+    text: json["text"],
+    title: json["title"],
+    createDate: json["createDate"],
+    isRemove: json["isRemove"],
+    color: Color(json["color"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "text": text,
-        "title": title,
-        "createDate": createDate,
-        "isRemove": isRemove,
-        "color": color.value,
-      };
+    "id": id,
+    "text": text,
+    "title": title,
+    "createDate": createDate,
+    "isRemove": isRemove,
+    "color": color.value,
+  };
 
   Map<String, dynamic> toJsonForUpdate() => {
-        NoteConstants.title: title,
-        NoteConstants.text: text,
-        NoteConstants.id: id,
-        NoteConstants.createDate: createDate,
-        NoteConstants.color: color.value.toString(),
-      };
+    NoteConstants.title: title,
+    NoteConstants.text: text,
+    NoteConstants.id: id,
+    NoteConstants.createDate: createDate,
+    NoteConstants.color: color.value.toString(),
+  };
 
   NoteModel copyWith({
     int? id,
