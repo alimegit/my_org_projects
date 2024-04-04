@@ -1,8 +1,17 @@
+
+import 'package:default_project/cubits/timer/timer_cubit.dart';
 import 'package:default_project/screen/timer/timer_screen.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/app_images.dart';
-import '../utils/appcolors.dart';
+import '../cubits/plans/plan_cubit.dart';
+import '../cubits/plans/plan_state.dart';
+
+String hourText = "01";
+String minuteText = "00";
+
 class AddPlanScreen extends StatefulWidget {
   const AddPlanScreen({super.key});
 
@@ -11,235 +20,271 @@ class AddPlanScreen extends StatefulWidget {
 }
 
 class _AddPlanScreenState extends State<AddPlanScreen> {
-  TextEditingController hourController = TextEditingController();
-  TextEditingController minuteController = TextEditingController();
-  TextEditingController tagController = TextEditingController();
+
+  String planText = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon:  const Icon(Icons.arrow_back_ios_sharp),
-          color: Colors.black,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              AppImages.logo,
-              width: 50.w,
+        backgroundColor: Colors.blueGrey,
+      ),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 30.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Set Your \nTime",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 35.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(height: 30.h,),
+                const TimeMyWidget(),
+                SizedBox(height: 30.h,),
+                // Align(
+                //   alignment: Alignment.centerRight,
+                //   child: IconButton(
+                //     onPressed: () {
+                //       myShowBottomSheet(context);
+                //     },
+                //     icon: Icon(
+                //       Icons.add,
+                //       size: 24.sp,
+                //     ),
+                //   ),
+                // ),
+                BlocBuilder<PlanCubit, PlanState>(
+                  builder: (BuildContext context, PlanState state) {
+                    return Column(
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextFormField(
+                              onChanged: (v) {
+                                planText = v;
+                              },
+                              maxLines: null,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.grey,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  borderSide: const BorderSide(color: Colors.black, width: 1),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20.h,),
+                          ],
+                        ),
+                        ...List.generate(
+                          state.plans.length,
+                              (index) {
+                            return ListTile(
+                              title: const Text("Vazifa"),
+                              subtitle: Text(
+                                state.plans[index],
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 25.sp,
+                                ),
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  context.read<PlanCubit>().deletePlan(state.plans[index]);
+                                },
+                                icon: Icon(
+                                  Icons.dangerous_outlined,
+                                  size: 22.sp,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 13.h),
+                    backgroundColor: Colors.green),
+
+                onPressed: () {
+                  if (hourText.isNotEmpty && minuteText.isNotEmpty) {
+                    context
+                        .read<TimerCubit>()
+                        .setHourAndMinute(hourText, minuteText);
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=> const TimerScreen()));
+                  }
+                  context.read<PlanCubit>().addPlan(planText);
+                },
+                child: Text(
+                  "Save",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.sp,
+                  ),
+                ),
+              ),
             ),
           ),
         ],
-
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Set Your \nTime",
-              style: TextStyle(color: Colors.black, fontSize: 45.sp),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 20.h,
-              ),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: const Color(0xFFE3E9E9),
-                borderRadius: BorderRadius.circular(28.r),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Enter time",
-                    style: TextStyle(
-                      color: const Color(0xFF3F4949),
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
+    );
+  }
+}
+//
+// myShowBottomSheet(BuildContext context) {
+//
+//   showModalBottomSheet(
+//     context: context,
+//     builder: (newContext) {
+//       return Padding(
+//         padding:
+//         EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+//         child: Container(
+//           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+//           decoration: BoxDecoration(
+//             color: Colors.white,
+//             borderRadius: BorderRadius.only(
+//               topLeft: Radius.circular(10.r),
+//               topRight: Radius.circular(10.r),
+//             ),
+//           ),
+//           child:
+//         ),
+//       );
+//     },
+//   );
+// }
+
+class TimeMyWidget extends StatelessWidget {
+  const TimeMyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade400,
+        borderRadius: BorderRadius.circular(20.r),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Enter time"),
+         SizedBox(height: 10.h,),
+          Row(
+            children: [
+              Expanded(
+                child: TextFormField(
+                  onChanged: (v) {
+                    hourText = v;
+                  },
+                  controller: TextEditingController(text: "01"),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^-?\d*\.?\d+$'))
+                  ],
+                  maxLength: 2,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide:
+                      const BorderSide(color: Colors.black, width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide:
+                      const BorderSide(color: Colors.grey, width: 1),
                     ),
                   ),
-                  SizedBox(
-                    height: 14.h,
+                ),
+              ),
+              SizedBox(width: 15.w),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 120.w,
-                        child: TextField(
-                          maxLength: 2,
-                          controller: hourController,
-                          keyboardType: TextInputType.number,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 32.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          decoration: InputDecoration(
-                            fillColor: Colors.grey.withOpacity(0.1),
-                            filled: true,
-                            contentPadding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 0.h),
-                            hintText: "  00",
-                            hintStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                                width: 1.w,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            ":",
-                            style: TextStyle(
-                              color: const Color(0xFF161D1D),
-                              fontSize: 57.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30.h,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 126.w,
-                        child: TextField(
-                          maxLength: 2,
-                          controller: minuteController,
-                          keyboardType: TextInputType.number,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 32.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          decoration: InputDecoration(
-                            fillColor: Colors.grey.withOpacity(0.1),
-                            filled: true,
-
-                            // fillColor: const Color(0xFFDDE4E3),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 0.h),
-                            hintText: "  00",
-                            hintStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                                width: 1.w,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 21.h,
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.access_time),
-                      ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          // Navigator.pop(context);
-                        },
-                        child: const Text("Cancel"),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Navigator.pop(context);
-                        },
-                        child: const Text("Ok"),
-                      ),
-                    ],
+                 SizedBox(height: 20.h,),
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 40.h,),
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: tagController,
-                decoration: InputDecoration(
-                  fillColor: AppColors.cDDE4E3,
-                  filled: true,
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      tagController.text = "";
-                      setState(() {});
-                    },
-                    icon: const Icon(
-                      Icons.cancel_outlined,
-                      color: Colors.black,
+              SizedBox(width: 15.w),
+              Expanded(
+                child: TextFormField(
+                  onChanged: (v) {
+                    minuteText = v;
+                  },
+                  controller: TextEditingController(text: "00"),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^-?\d*\.?\d+$'))
+                  ],
+                  maxLength: 2,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide:
+                      const BorderSide(color: Colors.black, width: 1),
                     ),
-                  ),
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20.r)),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(4.r),
-                      topRight: Radius.circular(4.r),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 40.h,),
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const TimerScreen()));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
-                    color: Colors.green,
-                  ),
-                  child: const Padding(
-                    padding:  EdgeInsets.all(8.0),
-                    child:  Center(
-                      child:Text("Start",style: TextStyle(color: Colors.white),),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide:
+                      const BorderSide(color: Colors.grey, width: 1),
                     ),
                   ),
                 ),
               ),
-            ),
-
-          ],
-        ),
+            ],
+          ),
+          Row(
+            children: [
+              const Text("Hour"),
+              SizedBox(width: 140.w),
+              const Text("Minute"),
+            ],
+          ),
+        ],
       ),
     );
   }

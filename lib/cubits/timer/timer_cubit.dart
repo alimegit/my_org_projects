@@ -1,32 +1,21 @@
 import 'package:default_project/cubits/timer/timer_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:async';
 
 class TimerCubit extends Cubit<TimerState> {
-  TimerCubit() : super(TimerLoadingState(1.0));
+  TimerCubit()
+      : super(
+    TimerState(
+      hour: '01',
+      minute: '00',
+      error: false,
+      stop: false,
+    ),
+  );
 
-  Timer? _timer;
-
-  void start(double minutes) {
-    emit(TimerLoadingState(minutes));
-    _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (minutes > 0) {
-        minutes -= 1.0;
-        emit(TimerLoadingState(minutes));
-      } else {
-        emit(TimerStopState());
-        _timer?.cancel();
-      }
-    });
+  setHourAndMinute(String hour, String minute) {
+    emit(state.copyWith(
+        hour: hour.length == 1 ? "0$hour" : hour,
+        minute: minute.length == 1 ? "0$minute" : minute));
   }
 
-  void stop() {
-    _timer?.cancel();
-    emit(TimerStopState());
-  }
-
-  void setError(String error) {
-    emit(TimerErrorState(error));
-  }
 }

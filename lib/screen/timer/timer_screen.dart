@@ -1,10 +1,14 @@
+
+import 'package:default_project/cubits/timer/timer_cubit.dart';
 import 'package:default_project/screen/add_plan_screen.dart';
-import 'package:default_project/utils/app_text_style.dart';
+import 'package:default_project/utils/appcolors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../utils/app_images.dart';
-import '../../utils/appcolors.dart';
+import '../../cubits/plans/plan_cubit.dart';
+import '../../cubits/plans/plan_state.dart';
+import '../../cubits/timer/timer_state.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -14,101 +18,131 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
-  TextEditingController tagController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
+        centerTitle: false,
+        title: Text(
+          "Timer",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 22.sp,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              AppImages.logo,
-              width: 50.w,
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const AddPlanScreen();
+                  },
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.settings,
+              size: 24.sp,
             ),
           ),
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) {
+          //           return const BankScreen();
+          //         },
+          //       ),
+          //     );
+          //   },
+          //   icon: Icon(
+          //     Icons.exit_to_app,
+          //     size: 24.sp,
+          //   ),
+          // ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 40.h,),
-         Text("Reading",style: AppTextStyle.robotoMedium.copyWith(color: Colors.black,fontSize: 18.sp),),
-            Center(
-              child: Container(
-                width: 200.w,
-                height: 200.h,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.green,
-                    width: 5,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "01:00",
-                    style: AppTextStyle.robotoMedium.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w600, fontSize: 40.sp),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 55.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: tagController,
-                decoration: InputDecoration(
-                  fillColor: AppColors.cDDE4E3,
-                  filled: true,
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      tagController.text = "";
-                      setState(() {});
-                    },
-                    icon: const Icon(
-                      Icons.cancel_outlined,
-                      color: Colors.black,
+            BlocBuilder<TimerCubit, TimerState>(
+              builder: (BuildContext context, TimerState state) {
+                return Column(
+                  children: [
+                    SizedBox(height: 120.h,),
+                   Container(
+                     width: 200.w,
+                     height: 200.h,
+                     decoration: BoxDecoration(
+                       shape: BoxShape.circle,
+                       border: Border.all(
+                         width: 5,
+                         color: Colors.green,
+                       )
+                     ),
+                     child: Center(
+                       child: Text(
+                         "${state.hour} : ${state.minute}",
+                         style: TextStyle(
+                           fontSize: 45.sp,
+                           fontWeight: FontWeight.w700,
+                         ),
+                       ),
+                     ),
+                   ),
+                    SizedBox(height: 20.h,),
+                    Container(
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 24.w, vertical: 20.h),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 13.h),
+                            backgroundColor: Colors.green),
+                        onPressed: () {
+                          Future.microtask(() {
+
+                          },);
+                        },
+                        child: Text(
+                          state.stop ? "Stop" : "Start",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20.r)),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(4.r),
-                      topRight: Radius.circular(4.r),
-                    ),
-                  ),
-                ),
-              ),
+                  ],
+                );
+              },
             ),
-            SizedBox(height: 60.h,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const AddPlanScreen()));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
-                    color: Colors.green,
-                  ),
-                  child: const Padding(
-                    padding:  EdgeInsets.all(8.0),
-                    child:  Center(
-                      child:Text("Stop",style: TextStyle(color: Colors.white),),
+            BlocBuilder<PlanCubit, PlanState>(
+              builder: (BuildContext context, PlanState state) {
+                return Column(
+                  children: [
+                    ...List.generate(
+                      state.plans.length,
+                          (index) {
+                        return ListTile(
+                          title: const Text("Vazifa"),
+                          subtitle: Text(
+                            state.plans[index],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25.sp,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                  ),
-                ),
-              ),
+                  ],
+                );
+              },
             ),
           ],
         ),
