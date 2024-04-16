@@ -53,6 +53,9 @@ dependencies:
   cloud_firestore: ^4.15.9
   firebase_storage: ^11.6.11
   firebase_core: ^2.24.2
+  get: ^4.6.6
+  shimmer: ^3.0.0
+  pinput: ^4.0.0
 
 
 dev_dependencies:

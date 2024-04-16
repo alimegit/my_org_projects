@@ -1,50 +1,51 @@
-import 'package:default_project/utils/appcolors.dart';
+import 'package:default_project/utils/size/size_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../colors/app_colors.dart';
 
 class AppTextStyle {
   //Inter
-  static  TextStyle robotoThin = TextStyle(
-    fontFamily: "Roboto",
+  static  TextStyle interThin = TextStyle(
+    fontFamily: "Inter",
     fontWeight: FontWeight.w200,
     fontSize: 14.w,
     color: AppColors.c_2A3256,
   );
-  static  TextStyle robotoLight = TextStyle(
-    fontFamily: "Roboto",
+  static  TextStyle interLight = TextStyle(
+    fontFamily: "Inter",
     fontWeight: FontWeight.w300,
     fontSize: 14.w,
     color: AppColors.c_2A3256,
   );
-  static  TextStyle robotoRegular = TextStyle(
-    fontFamily: "Roboto",
+  static  TextStyle interRegular = TextStyle(
+    fontFamily: "Inter",
     fontWeight: FontWeight.w400,
     fontSize: 16.w,
     color: AppColors.c_2A3256,
   );
-  static  TextStyle robotoMedium = TextStyle(
-    fontFamily: "Roboto",
+  static  TextStyle interMedium = TextStyle(
+    fontFamily: "Inter",
     fontWeight: FontWeight.w500,
     fontSize: 16.w,
     color: AppColors.c_2A3256,
   );
-  static  TextStyle robotoThinItalic = TextStyle(
-    fontFamily: "Roboto",
+
+  static  TextStyle interSemiBold = TextStyle(
+    fontFamily: "Inter",
     fontWeight: FontWeight.w600,
     fontSize: 16.w,
     color: AppColors.c_2A3256,
   );
 
-  static  TextStyle robotoBold = TextStyle(
-    fontFamily: "Roboto",
+  static  TextStyle interBold = TextStyle(
+    fontFamily: "Inter",
     fontWeight: FontWeight.w700,
     fontSize: 16.w,
     color: AppColors.c_2A3256,
   );
 
-  static  TextStyle robotoBlack = TextStyle(
-    fontFamily: "Roboto",
+  static  TextStyle interBlack = TextStyle(
+    fontFamily: "Inter",
     fontWeight: FontWeight.w800,
     fontSize: 16.w,
     color: AppColors.c_2A3256,
