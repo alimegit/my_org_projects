@@ -8,7 +8,7 @@ class AppRoute {
     switch (settings.name) {
       case "/":
         {
-          return navigate(const HelloScreen());
+          return navigate(const HomeScreen());
 
         }
       default:
