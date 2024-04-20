@@ -1,4 +1,5 @@
 import 'package:default_project/routes.dart';
+import 'package:default_project/screens/product_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:HelloScreen(),
+      child:const ProductScreen(),
     );
   }
 }
