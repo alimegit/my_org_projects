@@ -57,7 +57,6 @@ dependencies:
   get_it: ^7.7.0
   qr_code_scanner: ^1.0.1
   qr_flutter: ^4.1.0
-
   open_filex: ^4.4.0
   gallery_saver: ^2.3.2
   path_provider: ^2.1.2

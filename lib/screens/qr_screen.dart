@@ -51,10 +51,10 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
                 );
               },
               overlay: QrScannerOverlayShape(
-                borderColor: Colors.green,
-                borderRadius: 16,
+                borderColor: Colors.amberAccent,
+                borderRadius: 32,
                 borderLength: 50,
-                borderWidth: 10,
+                borderWidth: 15,
                 cutOutSize: MediaQuery.of(context).size.width - 32,
               ),
               onPermissionSet: (ctrl, p) {

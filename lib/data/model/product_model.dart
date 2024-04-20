@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ProductModel {
   final int id;
   final String name;
@@ -23,4 +25,22 @@ class ProductModel {
         description: description ?? this.description,
         qrCode: qrCode ?? this.qrCode,
       );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'qrCode': qrCode,
+    };
+  }
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['id'],
+      name: json['name'],
+      description: json['description'],
+      qrCode: json['qrCode'],
+    );
+  }
 }
