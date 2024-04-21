@@ -1,4 +1,5 @@
 import 'package:default_project/routes.dart';
+import 'package:default_project/screens/generate_screen/generate_screen.dart';
 import 'package:default_project/screens/product_screen.dart';
 import 'package:default_project/services/service_locator.dart';
 
@@ -32,14 +33,13 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp(
             initialRoute: RouteNames.helloScreen,
-
             debugShowCheckedModeBanner: false,
             theme: ThemeData(useMaterial3: false),
             home: child,
           ),
         );
       },
-      child:const ProductScreen(),
+      child:const GenerateScreen(),
     );
   }
 }

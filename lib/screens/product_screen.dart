@@ -1,15 +1,7 @@
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-
 import 'package:default_project/screens/qr_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gallery_saver/gallery_saver.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
 import '../bloc/qr_bloc.dart';
 import '../bloc/qr_event.dart';
 import '../bloc/qr_state.dart';
@@ -20,7 +12,6 @@ import '../utils/app_text_style.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
-
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
@@ -98,7 +89,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         context.read<ProductBloc>().add(
                           AddProductEvent(
                             productModel: ProductModel(
-                              name: "Pomidor",
+                              name: "Shaftoli",
                               id: 2,
                               qrCode: barcode.code.toString(),
                               description: "Tabiiy",
