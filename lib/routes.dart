@@ -9,7 +9,6 @@ class AppRoute {
       case "/":
         {
           return navigate(const HelloScreen());
-
         }
       default:
         {
@@ -41,5 +40,4 @@ class RouteNames {
   static const String animation5 = "/five_route";
   static const String animation6 = "/six_route";
   static const String animation7 = "/seven_route";
-
 }
