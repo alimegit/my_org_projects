@@ -24,7 +24,7 @@ class ApiProvider {
       }
       return NetworkResponse(errorText: "Noma'lum xatolik");
     } on SocketException {
-      return NetworkResponse(errorText: "Internetga ulanmagan");
+      return NetworkResponse(errorText: "Internet ulanmagan");
     } on FormatException {
       return NetworkResponse(errorText: "Format togri kelmadi");
     } catch (error) {

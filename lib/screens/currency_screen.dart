@@ -1,61 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../bloc/currency_bloc.dart';
 import '../bloc/currency_state.dart';
-class BlocCurrencyScreen extends StatefulWidget {
-  const BlocCurrencyScreen({super.key});
+import '../data/model/currency_model.dart';
 
-  @override
-  State<BlocCurrencyScreen> createState() => _BlocCurrencyScreenState();
-}
+class CurrenciesScreen extends StatelessWidget {
+  const CurrenciesScreen({super.key});
 
-class _BlocCurrencyScreenState extends State<BlocCurrencyScreen> {
   @override
   Widget build(BuildContext context) {
+    //context.read<CurrencyRepository>();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black12,
-        elevation: 0,
-        title: Text(
-          "All Currency",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24.sp,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-      body: BlocBuilder<CurrencyBloc, CurrencyState>(
-        builder: (context, state) {
-          if (state is CurrencyErrorState) {
-            debugPrint("error");
-            return Center(
-              child: Text(state.errorText),
-            );
-          }
-          if (state is CurrencyLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
-          }
-          if (state is CurrencySuccessState) {
-            debugPrint(state.currencies.length.toString() + " adfgaf");
-            return ListView(
-              children: [
-                ...List.generate(
-                  state.currencies.length,
-                  (index) => ListTile(
-                    title: Text(state.currencies[index].title,style: const TextStyle(color: Colors.black),),
+      appBar: AppBar(title: const Text("Currencies")),
+      body: Column(
+        children: [
+          BlocBuilder<CurrencyBloc, CurrencyState>(
+            buildWhen: (previous, current) {
+              return true;
+            },
+            builder: (context, state) {
+              if (state is CurrencyLoadingState) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (state is CurrencyErrorState) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(state.errorText),
+                  ],
+                );
+              } else if (state is CurrencySuccessState) {
+                return Expanded(
+                  child: ListView(
+                    children: List.generate(state.currencies.length, (index) {
+                      CurrencyModel currencyModel = state.currencies[index];
+                      return ListTile(
+                        onTap: () {
+                                          },
+                        title: Text(
+                            "${currencyModel.title} ${currencyModel.cbPrice}"),
+                        subtitle: Text("Qiymati: ${currencyModel.nbuBuyPrice}"),
+                      );
+                    }),
                   ),
-                ),
-              ],
-            );
-          }
-          return const Center(
-            child: Text("Hech qaysiga tushmadi"),
-          );
-        },
+                );
+              }
+              return const SizedBox();
+            },
+          ),
+          // Container(
+          //   height: 300,
+          //   color: Colors.red,
+          //   width: double.infinity,
+          // ),
+          BlocListener<CurrencyBloc, CurrencyState>(
+            listener: (context, state) {
+              if (state is CurrencySuccessState) {
+                if (state.currencies.isNotEmpty) {
+                  //  Navigator.
+                }
+              }
+
+              // if (state is CurrencyDeletedState) {
+              //   Future.microtask(
+              //         () => ScaffoldMessenger.of(context).showSnackBar(
+              //       const SnackBar(
+              //         duration: Duration(seconds: 1),
+              //         content: Text("DELETED"),
+              //       ),
+              //     ),
+              //   );
+              // }
+            },
+            child: Container(
+              height: 300,
+              color: Colors.red,
+              width: double.infinity,
+            ),
+          )
+        ],
       ),
     );
   }
