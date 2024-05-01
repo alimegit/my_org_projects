@@ -1,4 +1,6 @@
 import 'package:default_project/hello_screen.dart';
+import 'package:default_project/screens/auth/login/login_screen.dart';
+import 'package:default_project/screens/splash_screen/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,9 +8,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppRoute {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case "/":
+      case "/splash_screen":
         {
-          return navigate(const HelloScreen());
+          return navigate(const SplashScreen());
+
+        }
+        case "/login_screen":
+        {
+          return navigate(const LoginScreen());
 
         }
       default:
@@ -33,13 +40,7 @@ class AppRoute {
 }
 
 class RouteNames {
-  static const String helloScreen = "/";
-  static const String animation1 = "/one_route";
-  static const String animation2 = "/two_route";
-  static const String animation3 = "/three_route";
-  static const String animation4 = "/four_route";
-  static const String animation5 = "/five_route";
-  static const String animation6 = "/six_route";
-  static const String animation7 = "/seven_route";
+  static const String splashScreen = "/splash_screen";
+  static const String loginScreen = "/login_screen";
 
 }
