@@ -53,9 +53,9 @@ class UniversalTextInput extends StatelessWidget {
         },
         autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
-          fillColor: Colors.transparent,
+          fillColor: Colors.black26,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-          filled: false,
+          filled: true,
           contentPadding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 20.h),
           labelText: hintText,
           labelStyle: AppTextStyle.robotoBold.copyWith(color: Colors.grey,fontSize: 11.sp),
