@@ -15,11 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(414, 896),
+      designSize: const Size(430, 932),
       builder: (context, child) {
         ScreenUtil.init(context);
         return MaterialApp(
           initialRoute: RouteNames.splashScreen,
+          onGenerateRoute:AppRoute.generateRoute,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(useMaterial3: false),
           home: child,

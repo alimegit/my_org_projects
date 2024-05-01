@@ -12,5 +12,15 @@ class AppColors {
   static const Color c_2A3256 = Color(0xFF2A3256);
   static const Color c_C4C4C4= Color(0xFFC4C4C4);
   static const Color c_e76f51= Color(0xFFe76f51);
-  static const Color splashBackground= Color(0xC1F2B0);
+  static const Color splashBackground= Color(0xFFC1F2B0);
+  static const Color buttonColor= Color(0xFF00861D);
+  static const Color containerColor= Color(0xFF3D3B40);
+  static const LinearGradient scaffoldBackground =  LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFF00861D), // Boshlang'ich rang
+      Color(0xFFFFFFFF), // O'ng tarafdagi rang
+    ],
+  );
 }
