@@ -1,6 +1,7 @@
 import 'package:default_project/routes.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'hello_screen.dart';
@@ -18,12 +19,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(430, 932),
       builder: (context, child) {
         ScreenUtil.init(context);
-        return MaterialApp(
-          initialRoute: RouteNames.splashScreen,
-          onGenerateRoute:AppRoute.generateRoute,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(useMaterial3: false),
-          home: child,
+        return AnnotatedRegion(
+          value: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark),
+          child: MaterialApp(
+            initialRoute: RouteNames.splashScreen,
+            onGenerateRoute:AppRoute.generateRoute,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(useMaterial3: false),
+            home: child,
+          ),
         );
       },
     );

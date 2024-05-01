@@ -1,5 +1,6 @@
 import 'package:default_project/hello_screen.dart';
 import 'package:default_project/screens/auth/login/login_screen.dart';
+import 'package:default_project/screens/auth/register/register_screen.dart';
 import 'package:default_project/screens/splash_screen/splash_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -16,6 +17,11 @@ class AppRoute {
         case "/login_screen":
         {
           return navigate(const LoginScreen());
+
+        }
+        case "/register_screen":
+        {
+          return navigate(const RegisterScreen());
 
         }
       default:
@@ -42,5 +48,6 @@ class AppRoute {
 class RouteNames {
   static const String splashScreen = "/splash_screen";
   static const String loginScreen = "/login_screen";
+  static const String registerScreen= "/register_screen";
 
 }
