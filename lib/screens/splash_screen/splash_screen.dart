@@ -1,9 +1,13 @@
+import 'package:default_project/bloc/auth_bloc.dart';
+import 'package:default_project/bloc/auth_state.dart';
+import 'package:default_project/data/forms/form_status.dart';
 import 'package:default_project/routes.dart';
 import 'package:default_project/utils/app_images.dart';
 import 'package:default_project/utils/app_text_style.dart';
 import 'package:default_project/utils/appcolors.dart';
 import 'package:default_project/utils/size_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return BlocListener<AuthBloc, AuthState>(
+  listener: (context, state) {
+    if(state.status == FormStatus.authenticated ){
+
+    }
+  },
+  child: Scaffold(
       backgroundColor: AppColors.splashBackground,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -87,6 +97,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ],
         ),
       ),
-    );
+    ),
+);
   }
 }

@@ -14,7 +14,8 @@ class AppColors {
   static const Color c_e76f51= Color(0xFFe76f51);
   static const Color splashBackground= Color(0xFFC1F2B0);
   static const Color buttonColor= Color(0xFF00861D);
-  static const Color containerColor= Color(0xFF3D3B40);
+  static const Color containerColor= Color(0xFF2B2B2B);
+  static const Color fillColor= Color(0xFF000000);
   static const LinearGradient scaffoldBackground =  LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
