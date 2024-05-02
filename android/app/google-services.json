@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "487468949020",
-    "project_id": "bank-app-3c40e",
-    "storage_bucket": "bank-app-3c40e.appspot.com"
+    "project_number": "1060361597962",
+    "project_id": "boom-pay-9209f",
+    "storage_bucket": "boom-pay-9209f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:487468949020:android:0a8aa7b5d72e0784c209d9",
+        "mobilesdk_app_id": "1:1060361597962:android:75d8a0c3ab7af9bf4a9bf3",
         "android_client_info": {
           "package_name": "com.example.my_org_projects"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCiw0wVLn0_3rGatVrJe0lTzK7LCNUtRuA"
+          "current_key": "AIzaSyBfqw3pbWYm3DjO6DaP6WuexCH-ARgh7Rs"
         }
       ],
       "services": {
