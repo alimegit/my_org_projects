@@ -104,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     fontWeight: FontWeight.w600,
                                     fontSize: 32.w),
                               ),
-                              SizedBox(height: 105.h,),
+                              SizedBox(height: 30.h,),
                               Text(
                                 "Personal Informations",
                                 style: AppTextStyle.robotoBold.copyWith(
@@ -172,6 +172,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         color: AppColors
                                             .buttonColor), // Ustiga bosilganda chiqadigan border rangi
                                   ),
+                                  hintText: "PhoneNumber",
+                                  hintStyle: AppTextStyle.robotoMedium.copyWith(
+                                      color: Colors.white,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w300),
+                                  filled: true,
+                                  contentPadding: EdgeInsets.only(left: 20.w),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30.h,
+                              ),
+                              TextFormField(
+                                style: AppTextStyle.robotoMedium.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w300),
+                                onChanged: (v) {
+                                  setState(() {});
+                                },
+                                validator: (v) {
+                                },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  fillColor: AppColors.fillColor.withOpacity(0.1),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0.r),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors
+                                            .buttonColor), // Ustiga bosilganda chiqadigan border rangi
+                                  ),
                                   hintText: "Password",
                                   hintStyle: AppTextStyle.robotoMedium.copyWith(
                                       color: Colors.white,
@@ -182,104 +216,58 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                               SizedBox(
-                                height: 73.h,
+                                height: 30.h,
+                              ),
+                              TextFormField(
+                                style: AppTextStyle.robotoMedium.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w300),
+                                onChanged: (v) {
+                                  setState(() {});
+                                },
+                                validator: (v) {
+                                },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  fillColor: AppColors.fillColor.withOpacity(0.1),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0.r),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors
+                                            .buttonColor), // Ustiga bosilganda chiqadigan border rangi
+                                  ),
+                                  hintText: "Confirm Password",
+                                  hintStyle: AppTextStyle.robotoMedium.copyWith(
+                                      color: Colors.white,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w300),
+                                  filled: true,
+                                  contentPadding: EdgeInsets.only(left: 20.w),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 33.h,
                               ),
                               MyCustomButton(
+
                                 onTap: () {
                                 },
                                 text: "Register",
                                 isLoading: state.status == FormStatus.loading,
                               ),
                               SizedBox(
-                                height: 32.h,
-                              ),
-                              Center(
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.diamond_sharp,
-                                      color: Colors.grey,
-                                    ),
-                                    SizedBox(
-                                      width: 120.w,
-                                      child: CustomPaint(
-                                        painter: DiamondArrowStrokePainter(),
-                                      ),
-                                    ),
-                                    Text(
-                                      "  or, login with  ",
-                                      style: AppTextStyle.robotoBold.copyWith(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 18.w),
-                                    ),
-                                    SizedBox(
-                                      width: 120.w,
-                                      child: CustomPaint(
-                                        painter: DiamondArrowStrokePainter(),
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.diamond_sharp,
-                                      color: Colors.grey,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 40.h,
-                              ),
-                              Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    context.read<AuthBloc>().add(SignInWithGoogleEvent());
-                                    print("dfgndfgndfngdfg");
-                                  },
-                                  child: Container(
-                                    width: 382.w,
-                                    height: 53.h,
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.3),
-                                          spreadRadius: 0,
-                                          blurRadius: 1,
-                                          offset: const Offset(0, 4), // changes position of shadow
-                                        ),
-                                      ],
-                                      color: AppColors.buttonColor.withOpacity(0.3).withBlue(2),
-                                      borderRadius: BorderRadius.circular(32.r),
-                                    ),
-                                    child: Center(
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(
-                                            AppImages.google,
-                                            width: 31.w,
-                                          ),
-                                          Text(
-                                            "  Continue with Google",
-                                            style: AppTextStyle.robotoBold.copyWith(
-                                                color: Colors.white,
-                                                fontSize: 25.w,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 54.h,
+                                height: 24.h,
                               ),
                               Center(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Don’t have an account?",
+                                      "You have an account?",
                                       style: AppTextStyle.robotoThin.copyWith(
                                           color: Colors.white, fontWeight: FontWeight.w300),
                                     ),
