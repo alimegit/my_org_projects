@@ -1,5 +1,5 @@
-import 'package:default_project/bloc/auth_bloc.dart';
-import 'package:default_project/bloc/auth_state.dart';
+import 'package:default_project/bloc/auth/auth_bloc.dart';
+import 'package:default_project/bloc/auth/auth_state.dart';
 import 'package:default_project/data/forms/form_status.dart';
 import 'package:default_project/routes.dart';
 import 'package:default_project/utils/app_images.dart';

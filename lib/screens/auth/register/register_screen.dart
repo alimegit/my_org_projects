@@ -1,11 +1,12 @@
-import 'package:default_project/bloc/auth_bloc.dart';
-import 'package:default_project/bloc/auth_state.dart';
+import 'package:default_project/bloc/auth/auth_bloc.dart';
+import 'package:default_project/bloc/auth/auth_state.dart';
+import 'package:default_project/data/models/user_model.dart';
 import 'package:default_project/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../bloc/auth_event.dart';
+import '../../../bloc/auth/auth_event.dart';
 import '../../../data/forms/form_status.dart';
 import '../../../routes.dart';
 import '../../../utils/app_images.dart';
@@ -22,6 +23,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController lastnameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -104,7 +109,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     fontWeight: FontWeight.w600,
                                     fontSize: 32.w),
                               ),
-                              SizedBox(height: 30.h,),
+                              SizedBox(
+                                height: 30.h,
+                              ),
                               Text(
                                 "Personal Informations",
                                 style: AppTextStyle.robotoBold.copyWith(
@@ -115,18 +122,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               SizedBox(
                                 height: 45.h,
                               ),
-                              TextFormField(
+                              TextField(
+                                controller: emailController,
                                 style: AppTextStyle.robotoMedium.copyWith(
                                     color: Colors.white,
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w300),
-                                onChanged: (v) {
-                                  setState(() {});
-                                },
-                                validator: (v) {
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                 decoration: InputDecoration(
                                   fillColor: AppColors.fillColor.withOpacity(0.1),
                                   focusedBorder: const OutlineInputBorder(
@@ -150,17 +151,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               SizedBox(
                                 height: 30.h,
                               ),
-                              TextFormField(
+                              TextField(
+                                controller: phoneNumberController,
                                 style: AppTextStyle.robotoMedium.copyWith(
                                     color: Colors.white,
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w300),
-                                onChanged: (v) {
-                                  setState(() {});
-                                },
-                                validator: (v) {
-                                },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                // onChanged: (v) {
+                                //   setState(() {});
+                                // },
+                                // validator: (v) {
+                                // },
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   fillColor: AppColors.fillColor.withOpacity(0.1),
@@ -184,17 +185,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               SizedBox(
                                 height: 30.h,
                               ),
-                              TextFormField(
+                              TextField(
+                                controller: passwordController,
                                 style: AppTextStyle.robotoMedium.copyWith(
                                     color: Colors.white,
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w300),
-                                onChanged: (v) {
-                                  setState(() {});
-                                },
-                                validator: (v) {
-                                },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   fillColor: AppColors.fillColor.withOpacity(0.1),
@@ -218,17 +214,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               SizedBox(
                                 height: 30.h,
                               ),
-                              TextFormField(
+                              TextField(
+                                controller: lastnameController,
                                 style: AppTextStyle.robotoMedium.copyWith(
                                     color: Colors.white,
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w300),
-                                onChanged: (v) {
-                                  setState(() {});
-                                },
-                                validator: (v) {
-                                },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   fillColor: AppColors.fillColor.withOpacity(0.1),
@@ -236,11 +227,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     borderRadius: BorderRadius.circular(10.0.r),
                                   ),
                                   focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors
-                                            .buttonColor), // Ustiga bosilganda chiqadigan border rangi
+                                    borderSide: BorderSide(color: AppColors.buttonColor),
                                   ),
-                                  hintText: "Confirm Password",
+                                  hintText: "Last Name",
                                   hintStyle: AppTextStyle.robotoMedium.copyWith(
                                       color: Colors.white,
                                       fontSize: 18.sp,
@@ -253,8 +242,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 height: 33.h,
                               ),
                               MyCustomButton(
-
                                 onTap: () {
+                                  context.read<AuthBloc>().add(
+                                        RegisterUserEvent(
+                                          userModel: UserModel(
+                                            username: emailController.text,
+                                            lastname: lastnameController.text,
+                                            password: passwordController.text,
+                                            email: "${emailController.text}@gmail.com)".trim(),
+                                            imageUrl: "imageUrl",
+                                            phoneNumber: phoneNumberController.text.trim(),
+                                            userId: "",
+                                            fcm: "",
+                                          ),
+                                        ),
+                                      );
+                                  Navigator.pushNamed(context, RouteNames.tabBox);
                                 },
                                 text: "Register",
                                 isLoading: state.status == FormStatus.loading,
@@ -273,7 +276,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Navigator.pushNamedAndRemoveUntil(context, RouteNames.loginScreen, (route) => false);
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context, RouteNames.loginScreen, (route) => false);
                                       },
                                       child: Text(
                                         " Login",

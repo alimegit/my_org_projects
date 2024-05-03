@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../data/forms/form_status.dart';
-import '../data/models/network_response.dart';
-import '../data/repositories/auth_repository.dart';
+import '../../data/forms/form_status.dart';
+import '../../data/models/network_response.dart';
+import '../../data/repositories/auth_repository.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 

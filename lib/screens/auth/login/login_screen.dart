@@ -1,15 +1,15 @@
-import 'package:default_project/bloc/auth_bloc.dart';
-import 'package:default_project/bloc/auth_event.dart';
-import 'package:default_project/bloc/auth_state.dart';
+import 'package:default_project/bloc/auth/auth_bloc.dart';
+import 'package:default_project/bloc/auth/auth_event.dart';
+import 'package:default_project/bloc/auth/auth_state.dart';
 import 'package:default_project/routes.dart';
 import 'package:default_project/screens/auth/login/widgets/line.dart';
 import 'package:default_project/screens/auth/login/widgets/my_custom_button.dart';
 import 'package:default_project/utils/app_text_style.dart';
 import 'package:default_project/utils/appcolors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../data/forms/form_status.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/app_images.dart';
@@ -23,13 +23,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
 
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
+
     bool isValidLoginCredentials() =>
         AppConstants.passwordRegExp.hasMatch(passwordController.text) &&
         AppConstants.textRegExp.hasMatch(emailController.text);
@@ -117,20 +118,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 45.h,
                               ),
                               TextFormField(
+                                controller: emailController,
                                 style: AppTextStyle.robotoMedium.copyWith(
                                     color: Colors.white,
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w300),
-                                onChanged: (v) {
-                                  bool validated = isValidLoginCredentials();
-                                  setState(() {});
-                                },
-                                validator: (v) {
-                                  if (v != null && AppConstants.textRegExp.hasMatch(v)) {
-                                    return null;
-                                  }
-                                  return "Username error";
-                                },
+                                // onChanged: (v) {
+                                //   bool validated = isValidLoginCredentials();
+                                //   setState(() {
+                                //   });
+                                //
+                                // },
+                                // validator: (v) {
+                                //   if (v != null && AppConstants.textRegExp.hasMatch(v)) {
+                                //     return null;
+                                //   }
+                                //   return "Username error";
+                                // },
                                 keyboardType: TextInputType.emailAddress,
                                 autovalidateMode: AutovalidateMode.onUserInteraction,
                                 decoration: InputDecoration(
@@ -138,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColors
-                                            .buttonColor), // Ustiga bosilganda chiqadigan border rangi
+                                            .buttonColor),
                                   ),
                                   border: OutlineInputBorder(
                                     borderSide: const BorderSide(color: Colors.white, width: 2),
@@ -157,23 +161,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 30.h,
                               ),
                               TextFormField(
+                                controller: passwordController,
                                 style: AppTextStyle.robotoMedium.copyWith(
                                     color: Colors.white,
                                     fontSize: 18.sp,
                                     fontWeight: FontWeight.w300),
                                 onChanged: (v) {
-                                  bool validated = isValidLoginCredentials();
-                                  setState(() {
-                                    validated;
-                                  });
+                                  // bool validated = isValidLoginCredentials();
+                                  // setState(() {
+                                  //   validated;
+                                  // });
                                 },
-                                validator: (v) {
-                                  if (v != null && AppConstants.passwordRegExp.hasMatch(v)) {
-                                    return null;
-                                  }
-                                  return "Kod xato";
-                                },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                // validator: (v) {
+                                //   if (v != null && AppConstants.passwordRegExp.hasMatch(v)) {
+                                //     return null;
+                                //   }
+                                //   return "Kod xato";
+                                // },
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   fillColor: AppColors.fillColor.withOpacity(0.1),
@@ -183,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColors
-                                            .buttonColor), // Ustiga bosilganda chiqadigan border rangi
+                                            .buttonColor),
                                   ),
                                   hintText: "Password",
                                   hintStyle: AppTextStyle.robotoMedium.copyWith(
@@ -200,9 +204,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               MyCustomButton(
                                 onTap: () {
                                   context.read<AuthBloc>().add(LoginUserEvent(password: passwordController.text, userName: emailController.text));
+                                  Navigator.pushNamedAndRemoveUntil(context, RouteNames.tabBox, (route) => false);
                                 },
                                 text: "Login",
-                                readyToSubmit: isValidLoginCredentials(),
+                                readyToSubmit: true,
                                 isLoading: state.status == FormStatus.loading,
                               ),
                               SizedBox(
@@ -249,6 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onTap: () {
                                     context.read<AuthBloc>().add(SignInWithGoogleEvent());
                                     print("dfgndfgndfngdfg");
+                                    Navigator.pushNamedAndRemoveUntil(context, RouteNames.tabBox, (route) => false);
                                   },
                                   child: Container(
                                     width: 382.w,
@@ -286,9 +292,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 54.h,
-                              ),
+                             70.getH(),
                               Center(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

@@ -1,4 +1,3 @@
-
 class UserModel {
   final String username;
   final String lastname;
@@ -7,6 +6,7 @@ class UserModel {
   final String imageUrl;
   final String phoneNumber;
   final String userId;
+  final String fcm;
 
   UserModel({
     required this.username,
@@ -16,11 +16,13 @@ class UserModel {
     required this.imageUrl,
     required this.phoneNumber,
     required this.userId,
+    required this.fcm,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
         username: json["username"] ?? "",
+        fcm: json["fcm"] ?? "",
         lastname: json["lastname"] ?? "",
         password: json["password"] ?? "",
         email: json["email"] ?? "",
@@ -37,6 +39,7 @@ class UserModel {
     String? imageUrl,
     String? phoneNumber,
     String? userId,
+    String? fcm,
   }) {
     return UserModel(
       username: username ?? this.username,
@@ -46,19 +49,43 @@ class UserModel {
       imageUrl: imageUrl ?? this.imageUrl,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       userId: userId ?? this.userId,
+      fcm: fcm ?? this.fcm,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       "username": username,
-      "lastname" : lastname,
-      "password" : password,
-      "email" : email,
-      "imageUrl" : imageUrl,
-      "phoneNumber" : phoneNumber,
-      "userId" : userId
+      "lastname": lastname,
+      "password": password,
+      "email": email,
+      "imageUrl": imageUrl,
+      "phoneNumber": phoneNumber,
+      "userId": userId,
+      "fcm": fcm
     };
   }
-  static UserModel initial()=>UserModel(username: "", lastname: "", password: "", email: "", imageUrl: "", phoneNumber: "", userId: "");
+
+  static UserModel initial() => UserModel(
+        username: "",
+        lastname: "",
+        fcm: "",
+        password: "",
+        email: "",
+        imageUrl: "",
+        phoneNumber: "",
+        userId: "",
+      );
+  Map<String, dynamic> toJsonUpdate() {
+    return {
+      'userName': username,
+      'lastName': lastname,
+      'passwordName': password,
+      'imageUrl': imageUrl,
+      'phoneNumber': phoneNumber,
+      'email': email,
+      'fcm': fcm,
+      'authUid': userId,
+    };
+  }
 }
