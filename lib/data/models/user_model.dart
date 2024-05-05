@@ -7,6 +7,7 @@ class UserModel {
   final String phoneNumber;
   final String userId;
   final String fcm;
+  final String authId;
 
   UserModel({
     required this.username,
@@ -17,6 +18,7 @@ class UserModel {
     required this.phoneNumber,
     required this.userId,
     required this.fcm,
+    required this.authId,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class UserModel {
         email: json["email"] ?? "",
         imageUrl: json["imageUrl"] ?? "",
         phoneNumber: json["phoneNumber"] ?? "",
+        authId: json["authId"] ?? "",
         userId: json["userId"] ?? "");
   }
 
@@ -40,6 +43,7 @@ class UserModel {
     String? phoneNumber,
     String? userId,
     String? fcm,
+    String? authId,
   }) {
     return UserModel(
       username: username ?? this.username,
@@ -50,6 +54,7 @@ class UserModel {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       userId: userId ?? this.userId,
       fcm: fcm ?? this.fcm,
+      authId: authId ?? this.authId,
     );
   }
 
@@ -62,7 +67,8 @@ class UserModel {
       "imageUrl": imageUrl,
       "phoneNumber": phoneNumber,
       "userId": userId,
-      "fcm": fcm
+      "fcm": fcm,
+      "authId": authId
     };
   }
 
@@ -75,6 +81,7 @@ class UserModel {
         imageUrl: "",
         phoneNumber: "",
         userId: "",
+    authId: "",
       );
   Map<String, dynamic> toJsonUpdate() {
     return {
@@ -85,7 +92,7 @@ class UserModel {
       'phoneNumber': phoneNumber,
       'email': email,
       'fcm': fcm,
-      'authUid': userId,
+      'authUid': authId,
     };
   }
 }

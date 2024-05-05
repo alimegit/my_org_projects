@@ -1,6 +1,3 @@
-
-
-import 'package:default_project/bloc/user/user_profile_event.dart';
 import 'package:default_project/bloc/user/user_profile_event.dart';
 import 'package:default_project/bloc/user/user_profile_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,7 +68,6 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
 
   _deleteUser(DeleteUserEvent event, emit) async {
     emit(state.copyWith(formStatus: FormStatus.loading));
-
     NetworkResponse networkResponse =
     await userProfileRepository.deleteUser(event.userModel.userId);
 

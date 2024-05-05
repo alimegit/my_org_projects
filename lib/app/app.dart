@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
+import '../bloc/user/user_profile_bloc.dart';
 import '../data/repositories/auth_repository.dart';
+import '../data/repositories/user_profile_repository.dart';
 import '../routes.dart';
 
 class AppLevel extends StatelessWidget {
@@ -13,7 +15,10 @@ class AppLevel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: [RepositoryProvider(create: (_) => AuthRepository())],
+      providers: [
+        RepositoryProvider(create: (_) => AuthRepository()),
+        RepositoryProvider(create: (_) => UserProfileRepository()),
+      ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -21,6 +26,10 @@ class AppLevel extends StatelessWidget {
               ..add(
                 CheckAuthenticationEvent(),
               ),
+          ),
+          BlocProvider(
+            create: (context) => UserProfileBloc(
+                userProfileRepository: context.read<UserProfileRepository>()),
           ),
         ],
         child: ScreenUtilInit(

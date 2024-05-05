@@ -20,6 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: BlocBuilder<UserProfileBloc, UserProfileState>(
         builder: (context, state) {
+          debugPrint("---------------${state.userModel.email} ${state.userModel.lastname}");
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         '${state.userModel.email} ${state.userModel.lastname}',
                         style: TextStyle(
-                          color: AppColors.c_151940,
+                          color: Colors.black,
                           fontSize: 30.w,
                           fontWeight: FontWeight.w700,
                         ),

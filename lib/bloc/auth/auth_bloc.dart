@@ -1,3 +1,4 @@
+import 'package:default_project/data/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,10 +11,11 @@ import 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.authRepository})
       : super(
-          const AuthState(
+          AuthState(
             status: FormStatus.pure,
             errorMessage: "",
             statusMessage: "",
+            userModel: UserModel.initial(),
           ),
         ) {
     on<CheckAuthenticationEvent>(_checkAuthentication);
@@ -63,6 +65,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (networkResponse.errorText.isEmpty) {
       emit(state.copyWith(
         status: FormStatus.authenticated,
+        statusMessage: "auth"
       ));
     } else {
       emit(state.copyWith(
@@ -92,9 +95,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(state.copyWith(status: FormStatus.loading));
     NetworkResponse networkResponse = await authRepository.googleSignIn();
     if (networkResponse.errorText.isEmpty) {
+      UserCredential userCredential = networkResponse.data;
       emit(state.copyWith(
-        status: FormStatus.authenticated,
-      ));
+          statusMessage: "registered",
+          status: FormStatus.authenticated,
+          userModel: UserModel(
+            username: "",
+            lastname: userCredential.user!.displayName ?? "",
+            password: "",
+            email: userCredential.user!.email ?? "",
+            imageUrl: userCredential.user!.photoURL ?? "",
+            phoneNumber: userCredential.user!.phoneNumber ?? "",
+            userId: "",
+            fcm: "",
+            authId: userCredential.user!.uid,
+          )));
     } else {
       emit(state.copyWith(
         status: FormStatus.error,

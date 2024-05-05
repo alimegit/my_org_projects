@@ -1,11 +1,11 @@
-import 'package:default_project/hello_screen.dart';
 import 'package:default_project/screens/auth/login/login_screen.dart';
 import 'package:default_project/screens/auth/register/register_screen.dart';
 import 'package:default_project/screens/loacal_auth/method_one/confirm_pin_screen.dart';
 import 'package:default_project/screens/loacal_auth/method_one/entry_pin_screen.dart';
 import 'package:default_project/screens/loacal_auth/method_one/set_pin_screen.dart';
 import 'package:default_project/screens/loacal_auth/method_two/touch_id_screen.dart';
-import 'package:default_project/screens/splash_screen/splash_screen.dart';
+import 'package:default_project/screens/one_screen/one_screen.dart';
+import 'package:default_project/screens/splash/splash_screen.dart';
 import 'package:default_project/screens/tabBox/tab_box.dart';
 
 import 'package:flutter/material.dart';
@@ -14,7 +14,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppRoute {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case "/splash_screen":
+      case "/one_screen":
+        {
+          return navigate(const OneScreen());
+
+        }
+        case "/splash_screen":
         {
           return navigate(const SplashScreen());
 
@@ -75,6 +80,7 @@ class AppRoute {
 
 class RouteNames {
   static const String splashScreen = "/splash_screen";
+  static const String oneScreen = "/one_screen";
   static const String loginScreen = "/login_screen";
   static const String registerScreen= "/register_screen";
   static const String tabBox= "/tab_box";

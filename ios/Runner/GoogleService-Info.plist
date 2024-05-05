@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1000777785104-jd0pfbc23jlf8vm7rv88te4lqppbukc8.apps.googleusercontent.com</string>
+	<string>1060361597962-hn33flsnqe5tchh7v2uuvtlpru5c3mcd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1000777785104-jd0pfbc23jlf8vm7rv88te4lqppbukc8</string>
+	<string>com.googleusercontent.apps.1060361597962-hn33flsnqe5tchh7v2uuvtlpru5c3mcd</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>1000777785104-60cpvefr4va9n7qquuglrd1jse416u49.apps.googleusercontent.com</string>
+	<string>1060361597962-v28ioh1864tpra216kaq8idde3n0lt15.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBTWk3o3rwDNnRyb_V3jUBxF17_8m8RNGs</string>
+	<string>AIzaSyBYwP2ACjmyLCBJGrTm2kl9qkDsYCAa_5o</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1000777785104</string>
+	<string>1060361597962</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.myOrgProjects</string>
 	<key>PROJECT_ID</key>
-	<string>market-c6e1c</string>
+	<string>boom-pay-9209f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>market-c6e1c.appspot.com</string>
+	<string>boom-pay-9209f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1000777785104:ios:6fd50a7e0f00c87dc50f95</string>
+	<string>1:1060361597962:ios:ee2a67793980edbd4a9bf3</string>
 </dict>
 </plist>

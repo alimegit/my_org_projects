@@ -10,14 +10,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+import '../../data/local/storage_repository.dart';
+
+class OneScreen extends StatefulWidget {
+  const OneScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<OneScreen> createState() => _OneScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+
+class _OneScreenState extends State<OneScreen> {
+  @override
+  void initState() {
+    StorageRepository.setBool(
+      key: "is_new_user",
+      value: true,
+    );
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;

@@ -9,7 +9,6 @@ class UserProfileRepository {
     try {
       QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection('users').get();
-
       List<UserModel> users = querySnapshot.docs
           .map((e) => UserModel.fromJson(e.data() as Map<String, dynamic>))
           .toList();
@@ -19,15 +18,14 @@ class UserProfileRepository {
           isExist = true;
         }
       }
-      if (isExist == false) {
+        print("qoshadi hozir");
         DocumentReference documentReference = await FirebaseFirestore.instance
             .collection('users')
             .add(userModel.toJson());
         await FirebaseFirestore.instance
             .collection('users')
             .doc(documentReference.id)
-            .update({"userId": documentReference.id});
-      }
+            .update({"authId": documentReference.id});
       return NetworkResponse(data: "success");
     } on FirebaseException catch (error) {
       debugPrint("USER ADD ERROR: $error");
