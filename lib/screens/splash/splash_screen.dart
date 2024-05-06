@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacementNamed(context, RouteNames.oneScreen);
       }
     } else {
-      Navigator.pushReplacementNamed(context, RouteNames.oneScreen);
+      Navigator.pushReplacementNamed(context, RouteNames.setPinScreen);
     }
   }
   @override
@@ -40,13 +40,14 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
-        child: Icon(
-          Icons.access_time_filled_outlined,
-          color: Colors.green,
-          size: 100,
+        child: Center(
+          child: Icon(
+            Icons.access_time_filled_outlined,
+            color: Colors.green,
+            size: 100,
+          ),
         ),
         listener: (BuildContext context, AuthState state) {
           _init(state.status);

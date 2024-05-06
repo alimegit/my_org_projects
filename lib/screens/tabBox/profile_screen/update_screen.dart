@@ -1,10 +1,7 @@
-
 import 'package:default_project/screens/tabBox/profile_screen/update_text_field.dart';
-import 'package:default_project/utils/app_text_style.dart';
 import 'package:default_project/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../bloc/user/user_profile_bloc.dart';
 import '../../../bloc/user/user_profile_event.dart';
 import '../../../bloc/user/user_profile_state.dart';

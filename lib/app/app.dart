@@ -41,7 +41,7 @@ class AppLevel extends StatelessWidget {
                   statusBarColor: Colors.transparent, statusBarIconBrightness: Brightness.dark),
               child: MaterialApp(
                 initialRoute: RouteNames.splashScreen,
-                onGenerateRoute: AppRoute.generateRoute,
+                onGenerateRoute: AppRoutes.generateRoute,
                 debugShowCheckedModeBanner: false,
                 theme: ThemeData(useMaterial3: false),
               ),

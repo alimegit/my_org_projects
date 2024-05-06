@@ -10,8 +10,9 @@ import 'package:default_project/screens/tabBox/tab_box.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class AppRoute {
+class AppRoutes {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case "/one_screen":
@@ -45,7 +46,7 @@ class AppRoute {
 
         }  case "/confirmPin_route":
         {
-          return navigate(const ConfirmPinScreen());
+          return navigate( ConfirmPinScreen(previousPin: settings.arguments as String,),);
 
         }  case "/touchId_route":
         {
