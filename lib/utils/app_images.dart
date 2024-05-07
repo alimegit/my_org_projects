@@ -4,6 +4,9 @@ class AppImages {
   static const String profile = "assets/images/profile.png";
   static const String logo = "assets/images/logo.png";
   static const String google = "assets/images/google.png";
+  static const String cardBackground = "assets/images/card_background.png";
+  static const String cip = "assets/images/cip.png";
+  static const String nfc = "assets/images/nfc.png";
 
   //.svg
   static const String delete = "assets/icons/delete.svg";
