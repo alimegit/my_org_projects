@@ -15,6 +15,7 @@ class AppImages {
   static const String calendar = "assets/icons/calendar.svg";
   static const String profileIcon = "assets/icons/profile.svg";
   static const String newTask = "assets/icons/new_task.svg";
+  static const String visa = "assets/icons/visa.svg";
 
 
 //.jpg

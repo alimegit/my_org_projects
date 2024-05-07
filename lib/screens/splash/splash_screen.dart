@@ -22,12 +22,12 @@ class _SplashScreenState extends State<SplashScreen> {
     if (formStatus != FormStatus.authenticated) {
       bool isNewUser = StorageRepository.getBool(key: "is_new_user");
       if (isNewUser) {
-        Navigator.pushReplacementNamed(context, RouteNames.loginScreen);
-      } else {
+        Navigator.pushReplacementNamed(context, RouteNames.setPinScreen);
+      } else  {
         Navigator.pushReplacementNamed(context, RouteNames.oneScreen);
       }
     } else {
-      Navigator.pushReplacementNamed(context, RouteNames.setPinScreen);
+      Navigator.pushReplacementNamed(context, RouteNames.loginScreen);
     }
   }
   @override
@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
     height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
-        child: Center(
+        child: const Center(
           child: Icon(
             Icons.access_time_filled_outlined,
             color: Colors.green,

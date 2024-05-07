@@ -51,7 +51,7 @@ class _ConfirmPinScreenState extends State<ConfirmPinScreen> {
         children: [
           60.getH(),
           Text(
-            "Pin kodlar  O'mos emas!",
+            "Pin qayta kirit!",
             style: AppTextStyle.robotoThin.copyWith(fontSize: 20),
           ),
           32.getH(),
@@ -86,7 +86,7 @@ class _ConfirmPinScreenState extends State<ConfirmPinScreen> {
                     .substring(0, pinPutController.text.length - 1);
               }
             },
-          )
+          ),
         ],
       ),
     );

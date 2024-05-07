@@ -203,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       password: passwordController.text,
                                       userName: emailController.text));
                                   Navigator.pushNamedAndRemoveUntil(
-                                      context, RouteNames.tabBox, (route) => false);
+                                      context, RouteNames.setPinScreen, (route) => false);
                                 },
                                 text: "Login",
                                 readyToSubmit: true,
@@ -252,9 +252,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: InkWell(
                                   onTap: () {
                                     context.read<AuthBloc>().add(SignInWithGoogleEvent());
-                                    print("dfgndfgndfngdfg");
                                     Navigator.pushNamedAndRemoveUntil(
-                                        context, RouteNames.tabBox, (route) => false);
+                                        context, RouteNames.setPinScreen, (route) => false);
                                   },
                                   child: Container(
                                     width: 382.w,
