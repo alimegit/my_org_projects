@@ -122,8 +122,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             password: passwordController.text,
                           );
                           context.read<UserProfileBloc>().add(
-                            UpdateUserEvent(
-                              userModel: userModel,
+                            UpdateUserEvent(userModel: userModel,
                             ),
                           );
                           Navigator.pop(context);

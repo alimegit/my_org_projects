@@ -6,27 +6,27 @@ import '../../data/models/user_model.dart';
 abstract class UserProfileEvent extends Equatable {}
 
 class AddUserEvent extends UserProfileEvent {
-  AddUserEvent({required this.userModel});
-
   final UserModel userModel;
+
+  AddUserEvent(this.userModel);
 
   @override
   List<Object?> get props => [userModel];
 }
 
 class UpdateUserEvent extends UserProfileEvent {
-  UpdateUserEvent({required this.userModel});
-
   final UserModel userModel;
+
+  UpdateUserEvent({ required this.userModel});
 
   @override
   List<Object?> get props => [userModel];
 }
 
 class DeleteUserEvent extends UserProfileEvent {
-  DeleteUserEvent({required this.userModel});
-
   final UserModel userModel;
+
+  DeleteUserEvent(this.userModel);
 
   @override
   List<Object?> get props => [userModel];
@@ -42,9 +42,10 @@ class GetUserByDocIdEvent extends UserProfileEvent {
 }
 
 class GetCurrentUserEvent extends UserProfileEvent {
-  GetCurrentUserEvent({required this.uid});
+  //TODO-4 Add UID to Event
+  final String? uid;
 
-  final String uid;
+  GetCurrentUserEvent( this.uid);
 
   @override
   List<Object?> get props => [uid];

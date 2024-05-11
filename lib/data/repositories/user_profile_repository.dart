@@ -18,7 +18,6 @@ class UserProfileRepository {
           isExist = true;
         }
       }
-        print("qoshadi hozir");
         DocumentReference documentReference = await FirebaseFirestore.instance
             .collection('users')
             .add(userModel.toJson());
