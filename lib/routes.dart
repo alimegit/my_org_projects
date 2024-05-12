@@ -10,7 +10,6 @@ import 'package:default_project/screens/tabBox/tab_box.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class AppRoutes {
   static Route generateRoute(RouteSettings settings) {

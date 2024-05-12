@@ -12,10 +12,8 @@ class UserProfileRepository {
       List<UserModel> users = querySnapshot.docs
           .map((e) => UserModel.fromJson(e.data() as Map<String, dynamic>))
           .toList();
-      bool isExist = false;
       for (var user in users) {
         if (user.email == userModel.email) {
-          isExist = true;
         }
       }
         DocumentReference documentReference = await FirebaseFirestore.instance

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/auth/auth_state.dart';
 import '../../bloc/user/user_profile_bloc.dart';
@@ -28,9 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (isAuthenticated == false) {
       bool isNewUser = StorageRepository.getBool(key: "is_new_user");
-      if (isNewUser) {
+      if (isNewUser ) {
         Navigator.pushReplacementNamed(context, RouteNames.loginScreen);
-      } else {
+      } else  {
         Navigator.pushReplacementNamed(context, RouteNames.oneScreen);
       }
     } else {
@@ -38,6 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context, hasPin ? RouteNames.entryPinScreen : RouteNames.setPinScreen);
     }
   }
+
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
         listener: (context, state) {
           if (state.status == FormStatus.authenticated) {
             BlocProvider.of<UserProfileBloc>(context).add(
-                GetCurrentUserEvent(FirebaseAuth.instance.currentUser!.uid, ));
+                GetCurrentUserEvent( uid: FirebaseAuth.instance.currentUser!.uid ));
 
             _init(true);
           } else {
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
         },
         child: const Center(
           child: Icon(
-            Icons.food_bank,
+            Icons.comment_bank,
             color: Colors.green,
             size: 200,
           ),

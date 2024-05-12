@@ -22,14 +22,6 @@ class OneScreen extends StatefulWidget {
 
 class _OneScreenState extends State<OneScreen> {
   @override
-  void initState() {
-    StorageRepository.setBool(
-      key: "is_new_user",
-      value: true,
-    );
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
@@ -80,7 +72,11 @@ class _OneScreenState extends State<OneScreen> {
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.pushReplacementNamed(context, RouteNames.loginScreen);
+                    StorageRepository.setBool(
+                      key: "is_new_user",
+                      value: true,
+                    ).then((value) => Navigator.pushReplacementNamed(context, RouteNames.loginScreen));
+
                   },
                   child: Container(
                     decoration: BoxDecoration(

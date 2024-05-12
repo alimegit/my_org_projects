@@ -259,8 +259,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                   ),
                                 );
-                                  Navigator.pushNamed(context, RouteNames.tabBox);
-
+                                Navigator.pushAndRemoveUntil(context, RouteNames.setPinScreen as Route<Object?>, (route) => false);
                               },
                               text: "Register",
                               isLoading: false,

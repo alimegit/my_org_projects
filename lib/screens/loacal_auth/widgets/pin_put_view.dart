@@ -3,63 +3,64 @@ import 'package:default_project/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
+import '../../../utils/appcolors.dart';
+
 class PinPutTextView extends StatelessWidget {
-  PinPutTextView({
+  const PinPutTextView({
     super.key,
-    required this.pinPutFocusMode,
+    required this.pinPutFocusNode,
     required this.pinPutController,
     required this.isError,
     this.onCompleted,
   });
 
-  final FocusNode pinPutFocusMode;
+  final FocusNode pinPutFocusNode;
   final TextEditingController pinPutController;
   final bool isError;
   final ValueChanged<String>? onCompleted;
 
   @override
   Widget build(BuildContext context) {
-    final defaultPnTheme = PinTheme(
-        width: 42.w,
-        height: 42.h,
-        textStyle: TextStyle(
-            fontSize: 36,
-            color: Colors.grey
-        )
+    final defaultPinTheme = PinTheme(
+      width: 42.w,
+      height: 42.w,
+      textStyle: TextStyle(
+          fontSize: 36.w,
+          color: Theme.of(context).textTheme.displayLarge?.color),
     );
     return SizedBox(
-      width: MediaQuery.of(context).size.width*0.38,
+      width: MediaQuery.of(context).size.width * 0.38,
       child: Pinput(
         useNativeKeyboard: false,
         showCursor: false,
         length: 4,
         onCompleted: onCompleted,
-        defaultPinTheme: defaultPnTheme,
+        defaultPinTheme: defaultPinTheme,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        focusNode: pinPutFocusMode,
+        focusNode: pinPutFocusNode,
         controller: pinPutController,
         errorPinTheme: PinTheme(
-            width: 42.w,
-            height: 42.h,
-            textStyle: TextStyle(fontSize: 36.w,color: Colors.black)
+          width: 42.w,
+          height: 42.w,
+          textStyle: TextStyle(fontSize: 36.w, color: AppColors.c_2A3256),
         ),
         preFilledWidget: Container(
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey
+          margin: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.grey,
           ),
         ),
         obscureText: true,
         obscuringWidget: Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isError ? Colors.red : Colors.green
+            shape: BoxShape.circle,
+            color: isError ? Colors.red : Colors.black,
           ),
         ),
-        followingPinTheme: defaultPnTheme,
-        pinAnimationType: PinAnimationType.slide,
+        followingPinTheme: defaultPinTheme,
+        pinAnimationType: PinAnimationType.scale,
       ),
     );
   }

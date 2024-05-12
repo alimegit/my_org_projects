@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../bloc/user/user_profile_bloc.dart';
+import '../../../bloc/user/user_profile_event.dart';
 import '../../../data/forms/form_status.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/app_images.dart';
@@ -328,19 +330,35 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           );
         },
-        listener: (BuildContext context, AuthState state) {
+        listener: (context, state) {
           if (state.status == FormStatus.error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  state.errorMessage,
-                  style: AppTextStyle.robotoThin.copyWith(color: Colors.white),
-                ),
-              ),
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          }
+          if (state.status == FormStatus.authenticated) {
+            if (state.statusMessage == "registered") {
+              BlocProvider.of<UserProfileBloc>(context).add(
+                AddUserEvent( userModel: state.userModel),
+              );
+            } else {
+              BlocProvider.of<UserProfileBloc>(context)
+                  .add(GetCurrentUserEvent(uid: state.userModel.authId));
+            }
+
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteNames.setPinScreen,
+                  (route) => false,
             );
           }
         },
       ),
     );
+  }
+  @override
+  void dispose() {
+    passwordController.dispose();
+    emailController.dispose();
+    super.dispose();
   }
 }

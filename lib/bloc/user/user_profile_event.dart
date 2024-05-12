@@ -8,7 +8,7 @@ abstract class UserProfileEvent extends Equatable {}
 class AddUserEvent extends UserProfileEvent {
   final UserModel userModel;
 
-  AddUserEvent(this.userModel);
+  AddUserEvent({ required this.userModel});
 
   @override
   List<Object?> get props => [userModel];
@@ -43,9 +43,9 @@ class GetUserByDocIdEvent extends UserProfileEvent {
 
 class GetCurrentUserEvent extends UserProfileEvent {
   //TODO-4 Add UID to Event
-  final String? uid;
+  final String uid;
 
-  GetCurrentUserEvent( this.uid);
+  GetCurrentUserEvent({required this.uid});
 
   @override
   List<Object?> get props => [uid];
