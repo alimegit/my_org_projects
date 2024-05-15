@@ -1,16 +1,12 @@
-import 'package:default_project/screens/widgets/category_button.dart';
-import 'package:default_project/screens/widgets/dialogs/dialog.dart';
+import 'dart:math' show cos, sqrt, asin;
 import 'package:default_project/utils/app_images.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
 import 'package:default_project/screens/widgets/map_type.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../data/model/place_category_enum.dart';
-import '../data/model/place_model.dart';
-import '../view_models/adress_view_model.dart';
+import '../utils/appcolors.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({
@@ -24,7 +20,10 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   int activeIndex = 0;
   late String image;
- late String text;
+  late String text;
+  double lat1 = 21.423423423423423;
+  double lon1 = 12.23558444636441;
+
   @override
   Widget build(BuildContext context) {
     CameraPosition? cameraPosition;
@@ -38,12 +37,15 @@ class _MapScreenState extends State<MapScreen> {
                 markers: viewModel.markers,
                 onCameraIdle: () {
                   if (cameraPosition != null) {
-                    context.read<MapsViewModel>().changeCurrentLocation(cameraPosition!);
+                    context
+                        .read<MapsViewModel>()
+                        .changeCurrentLocation(cameraPosition!);
                   }
                 },
                 onCameraMove: (CameraPosition currentCameraPosition) {
                   cameraPosition = currentCameraPosition;
-                  debugPrint("CURRENT POSITION:${currentCameraPosition.target.longitude}");
+                  debugPrint(
+                      "CURRENT POSITION:${currentCameraPosition.target.longitude}");
                 },
                 mapType: viewModel.mapType,
                 initialCameraPosition: viewModel.initialCameraPosition!,
@@ -59,23 +61,43 @@ class _MapScreenState extends State<MapScreen> {
                 ),
               ),
               Positioned(
-                top: 100.h,
-                right: 0,
-                left: 0,
-                child: Text(
-                  viewModel.currentPlaceName,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    color: Colors.black
+                top: 800,
+                left: 15,
+                right: 15,
+                child: InkWell(
+                  onTap: () {
+                    double distance = _calculateDistance(
+                      viewModel.currentCameraPosition.target.latitude,
+                      viewModel.currentCameraPosition.target.longitude,
+                      lat1,
+                      lon1,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Distance: ${distance.toStringAsFixed(2)} km'),
+                      ),
+                    );
+                    debugPrint("-----DISTANCE $distance");
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: AppColors.c_2A3256,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Distance",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              categoryButton(
-                  callIndex: (int value) {  },
-                  imagePath: (String value) {
-                    image = value;
-                  })
+              )
             ],
           );
         },
@@ -95,24 +117,6 @@ class _MapScreenState extends State<MapScreen> {
             const SizedBox(
               height: 20,
             ),
-            FloatingActionButton(
-              onPressed: () {
-                addressDetailDialog(
-                  forUpdate: false,
-                  image:  image,
-                  place: text,
-                  context: context,
-                  placeModel: (newAddressDetails) {
-                    PlaceModel place = newAddressDetails;
-                    place.latLng = cameraPosition!.target;
-                    place.placeCategory = PlaceCategory.work;
-                    context.read<AddressesViewModel>().addNewAddress(place);
-                    Navigator.pop(context);
-                  },
-                );
-              },
-              child: const Icon(Icons.add_home_work_outlined),
-            ),
             const SizedBox(height: 20),
             const MapTypeItem(),
           ],
@@ -121,7 +125,13 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
-  _showMapTypePopup() {
-    // show
+  double _calculateDistance(
+      double lat1, double lon1, double lat2, double lon2) {
+    const p = 0.017453292519943295;
+    const c = cos;
+    final a = 0.5 -
+        c((lat2 - lat1) * p) / 2 +
+        c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
+    return 12742 * asin(sqrt(a));
   }
 }

@@ -1,5 +1,4 @@
 import 'package:default_project/screens/splash_screen.dart';
-import 'package:default_project/services/firebase_options.dart';
 import 'package:default_project/view_models/adress_view_model.dart';
 import 'package:default_project/view_models/location_view_model.dart';
 import 'package:default_project/view_models/maps_view_model.dart';
@@ -9,6 +8,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import 'services/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
