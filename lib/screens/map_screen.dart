@@ -1,4 +1,5 @@
 import 'dart:math' show cos, sqrt, asin;
+import 'package:default_project/data/models/user_place_model.dart';
 import 'package:default_project/screens/toast.dart';
 import 'package:default_project/utils/appcolors.dart';
 import 'package:default_project/view_models/location_view_model.dart';
@@ -16,7 +17,17 @@ class GoogleMapsScreen extends StatefulWidget {
   State<GoogleMapsScreen> createState() => _GoogleMapsScreenState();
 }
 
+
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
+  double lat = 0;
+  double long = 0;
+  // UserPlace userPlace = UserPlace(latLng: LatLng(lat, long ));
+  @override
+  void initState() {
+    // context.read<MapsViewModel>().;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,31 +36,49 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           LatLng? latLng = locationViewModel.latLng;
           double? latitude = latLng?.latitude;
           double? longitude = latLng?.longitude;
+          debugPrint("LONGTITUDE$longitude");
+          debugPrint("LONGTITUDE$latitude");
           if (latitude != null && longitude != null) {
-            _calculateDistance(latitude, longitude, 21.423423423423423, 12.23558444636441); // Masofani hisoblash
+            _calculateDistance(latitude, longitude, 21.423423423423423,
+                12.23558444636441);
             return Stack(
               children: [
-                GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(latitude, longitude),
-                    zoom: 15,
-                  ),
-                  markers: {
-                    Marker(
-                      markerId: const MarkerId('MyLocation'),
-                      position: LatLng(latitude, longitude),
-                    ),
-                  },
+                context.watch<MapsViewModel>().loading
+                    ? GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(latitude, longitude),
+                zoom: 15,
+              ),
+              markers: {
+                Marker(
+                  markerId: const MarkerId('MyLocation'),
+                  position: LatLng(latitude, longitude),
                 ),
+              },
+            )
+                    : GoogleMap(
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(latitude, longitude),
+                          zoom: 15,
+                        ),
+                        markers: {
+                          Marker(
+                            markerId: const MarkerId('MyLocation'),
+                            position: LatLng(latitude, longitude),
+                          ),
+                        },
+                      ),
                 Positioned(
-                  top: 830,
+                  top: 800,
                   left: 15,
                   right: 15,
                   child: InkWell(
                     onTap: () {
                       double distance = _calculateDistance(
-                        latitude, longitude,
-                        21.423423423423423, 12.23558444636441,
+                        latitude,
+                        longitude,
+                        21.423423423423423,
+                        12.23558444636441,
                       );
                       showSnackbar(context, 'Distance: ${distance} km');
                       debugPrint("-----DISTANCE $distance");
@@ -82,25 +111,27 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           }
         },
       ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 100,left: 300),
-          child: FloatingActionButton(
-            onPressed: () {
-              context.read<MapsViewModel>().moveToInitialPosition();
-            },
-            child: const Icon(Icons.gps_fixed),
-          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 100, left: 300),
+        child: FloatingActionButton(
+
+          onPressed: () {
+            debugPrint("ejiojd");
+          },
+          child: const Icon(Icons.gps_fixed),
         ),
+      ),
     );
   }
 
-  double _calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+  double _calculateDistance(
+      double lat1, double lon1, double lat2, double lon2) {
     const p = 0.017453292519943295;
     const c = cos;
-    final a = 0.5 - c((lat2 - lat1) * p) / 2 +
+    final a = 0.5 -
+        c((lat2 - lat1) * p) / 2 +
         c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
     return 12742 * asin(sqrt(a));
   }
-
 }

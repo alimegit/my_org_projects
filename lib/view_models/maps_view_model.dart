@@ -1,3 +1,4 @@
+
 import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:default_project/data/models/user_place_model.dart';
@@ -5,8 +6,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+
 import '../data/api/api_provider.dart';
-import '../utils/app_images.dart';
+
 
 class MapsViewModel extends ChangeNotifier {
   MapsViewModel() {
@@ -20,7 +22,7 @@ class MapsViewModel extends ChangeNotifier {
   bool get loading => _loading;
 
   final Completer<GoogleMapController> controller =
-      Completer<GoogleMapController>();
+  Completer<GoogleMapController>();
 
   MapType mapType = MapType.normal;
 
@@ -64,42 +66,23 @@ class MapsViewModel extends ChangeNotifier {
   //   notifyListeners();
   // }
 
-  // addNewMarker(PlaceModel placeModel) async {
-  //   markers = {};
-  //   Uint8List? markerImage;
-  //   switch (placeModel.placeCategory) {
-  //     case PlaceCategory.work:
-  //       markerImage = await getBytesFromAsset(
-  //         AppImages.work,
-  //         100,
-  //       );
-  //       break;
-  //     case PlaceCategory.home:
-  //       markerImage = await getBytesFromAsset(
-  //         AppImages.home,
-  //         100,
-  //       );
-  //     case PlaceCategory.other:
-  //       markerImage = await getBytesFromAsset(
-  //         AppImages.other,
-  //         100,
-  //       );
-  //   }
-  //
-  //   markers.add(
-  //     Marker(
-  //       position: placeModel.latLng,
-  //       infoWindow: InfoWindow(
-  //         title: placeModel.placeName,
-  //         snippet: placeModel.placeCategory.name,
-  //       ),
-  //       //BitmapDescriptor.defaultMarker,
-  //       icon: BitmapDescriptor.fromBytes(markerImage),
-  //       markerId: MarkerId(DateTime.now().toString()),
-  //     ),
-  //   );
-  //   notifyListeners();
-  // }
+  addNewMarker(UserPlace userPlace) async {
+    markers = {};
+
+    markers.add(
+      Marker(
+        position: userPlace.latLng,
+        infoWindow: InfoWindow(
+          title: userPlace.latLng.toString(),
+          snippet: userPlace.latLng.toString(),
+        ),
+        //BitmapDescriptor.defaultMarker,
+        icon: BitmapDescriptor.fromBytes(userPlace.latLng as Uint8List),
+        markerId: MarkerId(DateTime.now().toString()),
+      ),
+    );
+    notifyListeners();
+  }
 
   static Future<Uint8List> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);

@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(useMaterial3: false),
         home: const GoogleMapsScreen(),
       ),
     );
